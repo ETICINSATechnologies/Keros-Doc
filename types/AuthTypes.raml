@@ -1,0 +1,25 @@
+#%RAML 1.0 Library
+types:
+  LoginRequest:
+    type: object
+    description: Typical login request
+    properties:
+      username: string
+      password:
+        type: string
+        description: Should be encrypted already
+    example:
+      {
+        "username": "thomasD",
+        "password": "foobar"
+      }
+
+  LoginResponse:
+    type: object
+    description: Contains the OAuth2.0 authentication token
+    properties:
+      token: string
+    example:
+      {
+        "token": "thomasD"
+      }

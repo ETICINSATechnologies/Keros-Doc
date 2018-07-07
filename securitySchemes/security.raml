@@ -1,0 +1,11 @@
+#%RAML 1.0 Library
+securitySchemes:
+  OAuth2-0:
+    description: Simplified OAuth2.0  authentication in which every request must containt a JWT token header
+    type: OAuth 2.0
+    describedBy:
+      headers:
+        Authorization:
+          description: The security token that was received at login
+          type: string
+          pattern: Bearer {token}

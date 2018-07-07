@@ -1,0 +1,180 @@
+#%RAML 1.0 Library
+uses:
+  GeneralTypes: ../types/GeneralTypes.raml
+  Security: ../securitySchemes/security.raml
+  Traits: ../traits/traits.raml
+
+resourceTypes:
+  GetAll:
+    get:
+      is: [Traits.hasCommonError]
+      description: 'Gets all of the <<item>>'
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<item>>[]
+
+  GetPage:
+    get:
+      is: [Traits.searchable, Traits.orderable, Traits.pageable, Traits.hasCommonError]
+      description: 'Gets a page of <<item>>. The response is under the form { "content": [ITEMS], "meta": {META} }'
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          body:
+            application/json:
+              type: object
+              properties:
+                content: <<item>>[]
+                meta:
+                  type: object
+                  description: The page metadata. Note that when there are 2 pages, it means that the pages 0 and 1 exist, but not 2 (i.e. the page number is an index).
+                  properties:
+                    page: integer
+                    totalPages: integer
+                    totalItems: integer
+                    itemsPerPage: integer
+                  example:
+                    {
+                      page: 0,
+                      totalPages: 2,
+                      totalItems: 40,
+                      itemsPerPage: 25
+                    }
+  GetItem:
+    get:
+      is: [Traits.hasCommonError]
+      description: Gets a <<item>> by ID
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<item>>
+
+  DeleteItem:
+    delete:
+      is: [Traits.hasCommonError]
+      description: Deletes an <<item>> by ID
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        204:
+          description: The <<item>> was correctly deleted
+
+  CreateItem:
+    post:
+      is: [Traits.hasCommonError]
+      description: Creates an <<item>> and returns it
+      body: <<itemRequest>>
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        201:
+          description: The <<item>> was correctly added
+          body:
+            application/json:
+              type: <<item>>
+  UpdateItem:
+    put:
+      is: [Traits.hasCommonError]
+      description: Updates an <<item>> and returns it
+      body: <<itemUpdateRequest>>
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          description: The <<item>> was successfully updated added
+          body:
+            application/json:
+              type: <<item>>
+
+# Various combinations of Resource Types
+  GetAndDeleteItem:
+    get:
+      is: [Traits.hasCommonError]
+      description: Gets a <<item>> by ID
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<item>>
+    delete:
+      is: [Traits.hasCommonError]
+      description: Deletes an <<item>> by ID
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        204:
+          description: The <<item>> was correctly deleted
+  GetAndUpdateItem:
+    get:
+      is: [Traits.hasCommonError]
+      description: Gets a <<item>> by ID
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<item>>
+    put:
+      is: [Traits.hasCommonError]
+      description: Updates an <<item>> and returns it
+      body: <<itemUpdateRequest>>
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          description: The <<item>> was successfully updated added
+          body:
+            application/json:
+              type: <<item>>
+
+  getPageAndCreate:
+    get:
+      is: [Traits.searchable, Traits.orderable, Traits.pageable, Traits.hasCommonError]
+      description: 'Gets a page of <<item>>. The response is under the form { "content": [ITEMS], "meta": {META} }'
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          body:
+            application/json:
+              type: object
+              properties:
+                content: <<item>>[]
+                meta:
+                  type: object
+                  description: The page metadata. Note that when there are 2 pages, it means that the pages 0 and 1 exist, but not 2 (i.e. the page number is an index).
+                  properties:
+                    page: integer
+                    totalPages: integer
+                    totalItems: integer
+                    itemsPerPage: integer
+                  example:
+                    {
+                      page: 0,
+                      totalPages: 2,
+                      totalItems: 40,
+                      itemsPerPage: 25
+                    }
+    post:
+      is: [Traits.hasCommonError]
+      description: Creates an <<item>> and returns it
+      body: <<itemRequest>>
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        201:
+          description: The <<item>> was correctly added
+          body:
+            application/json:
+              type: <<item>>

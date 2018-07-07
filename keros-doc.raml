@@ -1,0 +1,59 @@
+#%RAML 1.0
+title: Keros
+uses:
+  GeneralTypes: ./types/GeneralTypes.raml
+  AuthTypes: ./types/AuthTypes.raml
+  CoreTypes: ./types/Core/CoreTypes.raml
+  CoreRequests: ./types/Core/CoreRequests.raml
+  GeneralResourceTypes: ./resourceTypes/GeneralResourceTypes.raml
+  Security: ./securitySchemes/security.raml
+version: v1
+baseUri: /api/v1
+mediaType:
+  - application/json
+protocols:
+  - HTTP
+  - HTTPS
+types:
+  Error: GeneralTypes.Error
+description: This API represents the interface between Keros-Back and Keros-Front. All requests and responses are of JSON type.
+
+/auth:
+  description: Authentication endpoints
+  /login:
+    displayName: Login
+    post:
+      body: AuthTypes.LoginRequest
+      description: Allows the user to log into the platform
+      responses:
+        200:
+          description: Returned when authentication is successful
+          body: AuthTypes.LoginResponse
+        401:
+          description: Returned when authentication failed - because of wrong username or password
+          body: GeneralTypes.Error
+        500:
+          description: Returned for any other error that is not handled
+          body: GeneralTypes.Error
+
+/core:
+  description: Core endpoints, used at multiple places in the application
+  /member:
+    type:  { GeneralResourceTypes.getPageAndCreate: {item : CoreTypes.Member, itemRequest : CoreRequests.CreateMember } }
+  /member/{id}:
+    type: { GeneralResourceTypes.GetAndUpdateItem: {item : CoreTypes.Member, itemUpdateRequest : CoreRequests.UpdateMember  } }
+
+  /country:
+    type:  { GeneralResourceTypes.GetAll : {item : CoreTypes.Country } }
+  /country/{id}:
+    type:  { GeneralResourceTypes.GetItem: {item : CoreTypes.Country } }
+
+  /position:
+    type:  { GeneralResourceTypes.GetAll: {item : CoreTypes.Position } }
+  /position/{id}:
+    type:  { GeneralResourceTypes.GetItem: {item : CoreTypes.Position } }
+
+  /department:
+    type:  { GeneralResourceTypes.GetAll: {item : CoreTypes.Department } }
+  /department/{id}:
+    type:  { GeneralResourceTypes.GetItem: {item : CoreTypes.Department } }

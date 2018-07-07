@@ -1,0 +1,59 @@
+#%RAML 1.0 Library
+uses:
+  GeneralTypes: ../types/GeneralTypes.raml
+traits:
+  searchable:
+    queryParameters:
+      search:
+        type: string
+        description: Allows a search where any information of each item must match the searc term
+        example: "thomas"
+        required: false
+
+  orderable:
+    queryParameters:
+      orderBy:
+        type: string
+        description: The field by which to order by
+        example: "name"
+        required: false
+      order:
+        type: string
+        description: Order
+        enum: [desc, asc]
+        default: asc
+        required: false
+
+  pageable:
+    queryParameters:
+      pageNumber:
+        description: The number of the page that is needed
+        type: integer
+        required: false
+        default: 0
+      pageSize:
+        description: Number of elements per page to recover
+        type: integer
+        required: false
+        default: 25
+        minimum: 10
+        maximum: 100
+
+  hasCommonError:
+    responses:
+      400:
+        description: Returned when the request isn't valid, or in the case of a get by id, the item is not found
+        body:
+          application/json: GeneralTypes.Error
+      401:
+        description: Returned when user is not authenticated or didn't send token
+        body:
+          application/json: GeneralTypes.Error
+      403:
+        description: Returned when user is not allowed to access this resource
+        body:
+          application/json: GeneralTypes.Error
+      500:
+        description: Returned for any other error that is not handled
+        body:
+          application/json: GeneralTypes.Error

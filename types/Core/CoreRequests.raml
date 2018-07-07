@@ -1,0 +1,67 @@
+#%RAML 1.0 Library
+uses:
+  CoreTypes: ./CoreTypes.raml
+types:
+  CreateMember:
+    type: object
+    description: Represents a member creation request. Basically a Member object without server defined info.
+    properties:
+      username: string
+      firstName: string
+      lastName: string
+      genderId: number
+      email: string
+      birthday:
+        type: date-only
+        description: No time, only a date of format YYYY-MM-DD
+      departmentId:
+        type: number
+        required: false
+      schoolYear:
+        type: CoreTypes.SchoolYear
+        required: false
+      telephone:
+        type: string
+        required: false
+      address: CoreTypes.Address
+      positionId:
+        type: number
+        required: true
+
+  UpdateMember:
+    type: object
+    description: Represents a member update request. Any or none of the fields can be present.
+    properties:
+      username:
+        type: string
+        required: false
+      firstName:
+        type: string
+        required: false
+      lastName:
+        type: string
+        required: false
+      genderId:
+        type: number
+        required: false
+      email:
+        type: string
+        required: false
+      birthday:
+        type: date-only
+        required: false
+      departmentId:
+        type: number
+        required: false
+      schoolYear:
+        type: CoreTypes.SchoolYear
+        required: false
+      telephone:
+        type: string
+        required: false
+      address:
+        type: CoreTypes.Address
+        required: false
+      positionId:
+        type: number
+        required: true
