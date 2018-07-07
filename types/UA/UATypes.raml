@@ -1,0 +1,42 @@
+#%RAML 1.0 Library
+types:
+  FirmType:
+    type: object
+    description: A type of firm
+    properties:
+      id: number
+      label: string
+    example:
+      {
+        id: 1,
+        label: "PME/PMI",
+      }
+
+  Siret:
+    type: string
+    maxLength: 20
+    description: A companie's SIRET
+
+  Firm:
+    type: object
+    description: A firm / company that ETIC is associated with (clients, partners, etc)
+    properties:
+      id: number
+      siret:
+        type: Siret
+        required: false
+      name:
+        type: string
+        description: The companie's name, or the persons name if it is a physical person
+      addressId: number
+      typeId:
+        type: number
+        description: The ID of the firm's type
+    example:
+      {
+        id: 1,
+        siret: "544683216546",
+        name: "Cool Company Inc.",
+        addressId: 5,
+        typeId: 2
+      }

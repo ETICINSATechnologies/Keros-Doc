@@ -3,10 +3,13 @@ title: Keros
 uses:
   GeneralTypes: ./types/GeneralTypes.raml
   AuthTypes: ./types/AuthTypes.raml
-  CoreTypes: ./types/Core/CoreTypes.raml
-  CoreRequests: ./types/Core/CoreRequests.raml
   GeneralResourceTypes: ./resourceTypes/GeneralResourceTypes.raml
   Security: ./securitySchemes/security.raml
+
+  CoreTypes: ./types/Core/CoreTypes.raml
+  CoreRequests: ./types/Core/CoreRequests.raml
+  UATypes: ./types/UA/UATypes.raml
+  UARequests: ./types/UA/UARequests.raml
 version: v1
 baseUri: /api/v1
 mediaType:
@@ -57,3 +60,10 @@ description: This API represents the interface between Keros-Back and Keros-Fron
     type:  { GeneralResourceTypes.GetAll: {item : CoreTypes.Department } }
   /department/{id}:
     type:  { GeneralResourceTypes.GetItem: {item : CoreTypes.Department } }
+
+/ua:
+  description: UA endpoints
+  /firm:
+    type:  { GeneralResourceTypes.getPageAndCreate: {item : UATypes.Firm, itemRequest : UARequests.CreateFirm } }
+  /firm/{id}:
+    type: { GeneralResourceTypes.GetAndUpdateItem: {item : UATypes.Firm, itemUpdateRequest : UARequests.UpdateFirm  } }

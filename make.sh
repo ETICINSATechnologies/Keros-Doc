@@ -1,1 +1,1 @@
-raml2html keros-doc.raml > keros-doc.html
+raml2html --validate keros-doc.raml > keros-doc.html

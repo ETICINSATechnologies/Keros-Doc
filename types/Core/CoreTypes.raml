@@ -58,16 +58,39 @@ types:
       - 7
       - 8
 
-  Position:
+  Pole:
     type: object
-    description: A member's position with ETIC INSA Technologies
+    description: A pole within ETIC INSA Technologies
     properties:
       id: number
-      label: string
+      label:
+        type: string
+        description: A short abbreviation the the name
+      name:
+        type: string
+        description: The full name of the pole
     example:
       {
         id: 1,
-        label: "Président(e)"
+        label: "Com",
+        name: "Communication"
+      }
+
+  Position:
+    type: object
+    description: A member's position with ETIC INSA Technologies (or other position like client)
+    properties:
+      id: number
+      label: string
+      poleId:
+        type: number
+        description: The ID of the member's pole. If not a ETIC position, then it's null (ex client)
+        required: false
+    example:
+      {
+        id: 1,
+        label: "Président(e)",
+        poleId: 5
       }
 
   Address:
@@ -89,7 +112,7 @@ types:
       username: string
       firstName: string
       lastName: string
-      gender: Gender
+      genderId: number
       email: string
       birthday:
         type: date-only
@@ -116,7 +139,7 @@ types:
         username: "jconnor",
         firstName: "John",
         lastName: "Connor",
-        gender: { id: 1, label: "H" },
+        genderId: 5,
         email: "john.conor@terminator.com",
         birthday: "1967-01-20",
         departmentId: 5,

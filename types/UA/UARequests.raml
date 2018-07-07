@@ -1,0 +1,35 @@
+#%RAML 1.0 Library
+uses:
+  UATypes: ./UATypes.raml
+  CoreTypes: ../Core/CoreTypes.raml
+types:
+  CreateFirm:
+    type: object
+    description: Represents a firm creation request.
+    properties:
+      siret:
+        type: UATypes.Siret
+        required: false
+      name:
+        type: string
+      address: CoreTypes.Address
+      typeId:
+        type: number
+        description: The ID of the firm's type
+
+  UpdateFirm:
+    type: object
+    description: Represents a firm update request. Any or none of the fields can be present.
+    properties:
+      siret:
+        type: UATypes.Siret
+        required: false
+      name:
+        type: string
+        required: false
+      address:
+        type: CoreTypes.Address
+        required: false
+      typeId:
+        type: number
+        required: false

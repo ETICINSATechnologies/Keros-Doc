@@ -24,9 +24,11 @@ types:
         type: string
         required: false
       address: CoreTypes.Address
-      positionId:
-        type: number
+      positionIds:
+        type: array
+        items: number
         required: true
+        description: The ID of the member's position(s) within ETIC INSA Technologies. Can have from 1 to N items.
 
   UpdateMember:
     type: object
@@ -62,6 +64,8 @@ types:
       address:
         type: CoreTypes.Address
         required: false
-      positionId:
-        type: number
+      positionIds:
+        type: array
+        items: number
         required: true
+        description: The ID of the member's position(s) within ETIC INSA Technologies. Can have from 1 to N items.
