@@ -61,8 +61,15 @@ description: This API represents the interface between Keros-Back and Keros-Fron
   /department/{id}:
     type:  { GeneralResourceTypes.GetItem: {item : CoreTypes.Department } }
 
+  /gender:
+    type:  { GeneralResourceTypes.GetAll: {item : CoreTypes.Gender } }
+
 /ua:
   description: UA endpoints
+  /firm-type:
+    type:  { GeneralResourceTypes.GetAll: {item : UATypes.FirmType} }
+  /firm-type/{id}:
+    type: { GeneralResourceTypes.GetItem: {item : UATypes.FirmType } }
   /firm:
     type:  { GeneralResourceTypes.getPageAndCreate: {item : UATypes.Firm, itemRequest : UARequests.CreateFirm } }
   /firm/{id}:
