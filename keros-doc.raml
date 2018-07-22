@@ -51,6 +51,9 @@ description: This API represents the interface between Keros-Back and Keros-Fron
   /country/{id}:
     type:  { GeneralResourceTypes.GetItem: {item : CoreTypes.Country } }
 
+  /address/{id}:
+    type:  { GeneralResourceTypes.GetItem: {item : CoreTypes.Address } }
+
   /position:
     type:  { GeneralResourceTypes.GetAll: {item : CoreTypes.Position } }
   /position/{id}:
