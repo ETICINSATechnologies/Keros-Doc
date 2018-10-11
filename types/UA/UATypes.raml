@@ -1,4 +1,6 @@
 #%RAML 1.0 Library
+uses:
+  CoreTypes: ../Core/CoreTypes.raml
 types:
   FirmType:
     type: object
@@ -9,13 +11,14 @@ types:
     example:
       {
         id: 1,
-        label: "PME/PMI",
+        label: "PME/PMI"
       }
+    
 
   Siret:
     type: string
     maxLength: 20
-    description: A companie's SIRET
+    description: A company's SIRET
 
   Firm:
     type: object
@@ -27,7 +30,7 @@ types:
         required: false
       name:
         type: string
-        description: The companie's name, or the persons name if it is a physical person
+        description: The company's name, or the persons name if it is a physical person
       addressId: number
       typeId:
         type: number
@@ -48,8 +51,8 @@ types:
       id: number
       firstName: string
       lastName: string
-      genderId: number
-      firmId: number
+      gender: CoreTypes.Gender
+      firm: Firm
       email: string
       telephone:
         type: string
@@ -70,3 +73,47 @@ types:
       old:
         type: boolean
         description: Whether the contact is still active today
+    example:
+      {
+        id: 1,
+        firstName: "Thomas",
+        lastName: "Edison",
+        gender: {
+          id: 2,
+          label: "F"
+        },
+        firm: {
+          id: 1,
+          siret: "544683216546",
+          name: "Cool Company Inc.",
+          addressId: 5,
+          typeId: 2
+        },
+        email: "thomas.edison@nomail.com",
+        telephone: "0033575489521",
+        cellphone: "0033675445501",
+        position: "Directeur de commerce",
+        notes: "A contacter en premier pour l'entreprise Nofirm",
+        old: false
+      }
+  
+  StudyStatus:
+    type: object
+    description: A status of a specific study
+    properties:
+      id: number
+      label: string
+    example:
+      {
+        id: 1,
+        label: "En cours"
+      }
+
+  Study:
+    type: object
+    description: A study (could also be called a project) with all associated business information
+    properties:
+      id: number
+      label: string
+      status: StudyStatus
+        
