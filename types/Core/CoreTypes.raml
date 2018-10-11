@@ -1,5 +1,9 @@
 #%RAML 1.0 Library
 types:
+  Money:
+    type: number
+    description: Represents a specific amount of money in euros (€)
+
   Gender:
     type: object
     properties:
@@ -148,3 +152,13 @@ types:
         addressId: 7,
         positionIds: [4, 6]
       }
+
+  MemberShort:
+    type: object
+    description: Is a smaller and more compact version of Member
+    properties:
+      id: number
+      username: string
+      firstName: string
+      lastName: string
+      gender: Gender

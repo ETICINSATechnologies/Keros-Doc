@@ -14,7 +14,6 @@ types:
         label: "PME/PMI"
       }
     
-
   Siret:
     type: string
     maxLength: 20
@@ -96,6 +95,42 @@ types:
         notes: "A contacter en premier pour l'entreprise Nofirm",
         old: false
       }
+
+  ContactShort:
+    type: object
+    description: A shorter version of Contact
+    properties:
+      id: number
+      firstName: string
+      lastName: string
+      gender: CoreTypes.Gender
+      email: string
+      telephone:
+        type: string
+        required: false
+        description: A contacts home or work phone number
+      cellphone:
+        type: string
+        required: false
+        description: A contacts cellphone number
+      position:
+        type: string
+        required: false
+        description: The contacts position / job within his firm
+    example:
+      {
+        id: 1,
+        firstName: "Thomas",
+        lastName: "Edison",
+        gender: {
+          id: 2,
+          label: "F"
+        },
+        email: "thomas.edison@nomail.com",
+        telephone: "0033575489521",
+        cellphone: "0033675445501",
+        position: "Directeur de commerce"
+      }
   
   StudyStatus:
     type: object
@@ -114,6 +149,115 @@ types:
     description: A study (could also be called a project) with all associated business information
     properties:
       id: number
-      label: string
+      number:
+        type: number
+        description: The real life number associated with this project. In other words, the project number used on physical papers
+      name: string
+      description: string
+      field: string
       status: StudyStatus
-        
+      signDate: date-only
+      endDate:
+        type: date-only
+        required: false
+      managementFee: CoreTypes.Money
+      applicationFee: CoreTypes.Money
+      rebilledFee: CoreTypes.Money
+      archivedDate:
+        type: date-only
+        required: false
+        description: If the project is archived, this date speciifies when that happened. If not, will be either null or not present.
+      firm: Firm
+      contacts:
+        type: array
+        items: ContactShort
+        description: An array containing all contacts associated with this project
+      leader:
+        type: CoreTypes.MemberShort
+        description: Is the projet lead within ETIC INSA Technologies
+      consultants:
+        type: array
+        items: CoreTypes.MemberShort
+        description: An array containing all members working as consultants for the project
+      qualityManagers:
+        type: array
+        items: CoreTypes.MemberShort
+        description: An array containing one or two members of ETIC who ensure quality control
+        minItems: 0
+        maxItems: 2
+    example:
+      {
+        id: 1,
+        number: 4125,
+        name: "Création d'un site internet",
+        description: "Le site web est un magasin en ligne",
+        field: "IF",
+        status: {
+          id: 1,
+          label: "En cours"
+        },
+        signDate: "2018-11-20",
+        endDate: "2019-12-01",
+        managementFee: 112,
+        applicationFee: 174,
+        rebilledFee: 25,
+        archivedDate: "2020-01-02",
+        firm: {
+          id: 1,
+          siret: "544683216546",
+          name: "Cool Company Inc.",
+          addressId: 5,
+          typeId: 2
+        },
+        contacts: [
+          {
+            id: 1,
+            firstName: "Thomas",
+            lastName: "Edison",
+            gender: {
+              id: 2,
+              label: "F"
+            },
+            email: "thomas.edison@nomail.com",
+            telephone: "0033575489521",
+            cellphone: "0033675445501",
+            position: "Directeur de commerce"
+          }
+        ],
+        leader: {
+          id: 1,
+          username: "clion",
+          firstName: "charlène",
+          lastName: "lion",
+          gender: {
+              id: 2,
+              label: "F"
+          }
+        },
+        consultants: [
+          {
+            id: 1,
+            username: "clion",
+            firstName: "charlène",
+            lastName: "lion",
+            gender: {
+                id: 2,
+                label: "F"
+            }
+          }
+        ],
+        qualityManagers: [
+          {
+            id: 1,
+            username: "clion",
+            firstName: "charlène",
+            lastName: "lion",
+            gender: {
+                id: 2,
+                label: "F"
+            }
+          }
+        ]
+      }
+  
+      
