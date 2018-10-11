@@ -33,3 +33,59 @@ types:
       typeId:
         type: number
         required: false
+      
+  CreateContact:
+    type: object
+    description: Represents a contact creation request. Basically a contact object without server defined info.
+    properties:
+      firstName: string
+      lastName: string
+      genderId: number
+      firmId: number
+      email: string
+      telephone:
+        type: string
+        required: false
+      cellphone:
+        type: string
+        required: false
+      position:
+        type: string
+        required: false
+      notes:
+        type: string
+        required: false
+
+  UpdateContact:
+    type: object
+    description: Represents a contact update request. Any or none of the fields can be present.
+    properties:
+      firstName:
+        type: string
+        required: false
+      lastName:
+        type: string
+        required: false
+      genderId:
+        type: number
+        required: false
+      firmId:
+        type: number
+        required: false
+      email:
+        type: string
+        required: false
+      telephone:
+        type: string
+        required: false
+      cellphone:
+        type: string
+        required: false
+      position:
+        type: string
+        required: false
+      notes:
+        type: string
+        required: false
+
+

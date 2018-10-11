@@ -40,3 +40,33 @@ types:
         addressId: 5,
         typeId: 2
       }
+
+  Contact:
+    type: object
+    description: A contact from a client firm
+    properties:
+      id: number
+      firstName: string
+      lastName: string
+      genderId: number
+      firmId: number
+      email: string
+      telephone:
+        type: string
+        required: false
+        description: A contacts home or work phone number
+      cellphone:
+        type: string
+        required: false
+        description: A contacts cellphone number
+      position:
+        type: string
+        required: false
+        description: The contacts position / job within his firm
+      notes:
+        type: string
+        required: false
+        description: Various notes about the contact if needed (mostly will be empty)
+      old:
+        type: boolean
+        description: Whether the contact is still active today
