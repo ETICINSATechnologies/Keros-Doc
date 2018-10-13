@@ -81,5 +81,7 @@ description: This API represents the interface between Keros-Back and Keros-Fron
     type:  { GeneralResourceTypes.getPageAndCreate: {item : UATypes.Contact, itemRequest : UARequests.CreateContact } }
   /contact/{id}:
     type: { GeneralResourceTypes.GetAndUpdateItem: {item : UATypes.Contact, itemUpdateRequest : UARequests.UpdateContact  } }
+  /study:
+    type:  { GeneralResourceTypes.getPageAndCreate: {item : UATypes.Study, itemRequest : UARequests.CreateStudy } }
   /study/{id}:
-    type: { GeneralResourceTypes.GetItem: {item : UATypes.Study } }
+    type: { GeneralResourceTypes.GetAndUpdateItem: {item : UATypes.Study, itemUpdateRequest : UARequests.UpdateStudy  } }

@@ -88,4 +88,119 @@ types:
         type: string
         required: false
 
+  CreateStudy:
+    type: object
+    description: Represents a study creation request. Basically a study object without server defined info.
+    properties:
+      id:
+        type: number
+      number:
+        type: number
+      name:
+        type: string
+      description:
+        type: string
+      departmentId:
+        type: number
+      statusId:
+        type: number
+      signDate:
+        type: date-only
+        required: false
+      endDate:
+        type: date-only
+        required: false
+      managementFee:
+        type: CoreTypes.Money
+        required: false
+      applicationFee:
+        type: CoreTypes.Money
+        required: false
+      rebilledFee:
+        type: CoreTypes.Money
+        required: false
+      archivedDate:
+        type: date-only
+        required: false
+      firmId:
+        type: number
+      contactIds:
+        type: array
+        items: number
+        minItems: 1
+      leaderId:
+        type: number
+      consultantIds:
+        type: array
+        items: number
+        minItems: 1
+      qualityManagerIds:
+        type: array
+        items: number
+        minItems: 1
+        maxItems: 2
+
+  UpdateStudy:
+    type: object
+    description: Represents a Study update request. Any or none of the fields can be present.
+    properties:
+      id:
+        type: number
+        required: false
+      number:
+        type: number
+        required: false
+      name:
+        type: string
+        required: false
+      description:
+        type: string
+        required: false
+      departmentId:
+        type: number
+        required: false
+      statusId:
+        type: number
+        required: false
+      signDate:
+        type: date-only
+        required: false
+      endDate:
+        type: date-only
+        required: false
+      managementFee:
+        type: CoreTypes.Money
+        required: false
+      applicationFee:
+        type: CoreTypes.Money
+        required: false
+      rebilledFee:
+        type: CoreTypes.Money
+        required: false
+      archivedDate:
+        type: date-only
+        required: false
+      firmId:
+        type: number
+        required: false
+      contactIds:
+        type: array
+        items: number
+        minItems: 1
+        required: false
+      leaderId:
+        type: number
+        required: false
+      consultantIds:
+        type: array
+        items: number
+        minItems: 1
+        required: false
+      qualityManagerIds:
+        type: array
+        items: number
+        minItems: 1
+        maxItems: 2
+        required: false
+
 

@@ -148,30 +148,46 @@ types:
     type: object
     description: A study (could also be called a project) with all associated business information
     properties:
-      id: number
+      id:
+        type: number
+        required: true
       number:
         type: number
         description: The real life number associated with this project. In other words, the project number used on physical papers
-      name: string
-      description: string
-      field: string
-      status: StudyStatus
-      signDate: date-only
+      name:
+        type: string
+      description:
+        type: string
+      department:
+        type: CoreTypes.Department
+      status:
+        type: StudyStatus
+      signDate:
+        type: date-only
+        required: false
       endDate:
         type: date-only
         required: false
-      managementFee: CoreTypes.Money
-      applicationFee: CoreTypes.Money
-      rebilledFee: CoreTypes.Money
+      managementFee:
+        type: CoreTypes.Money
+        required: false
+      applicationFee:
+        type: CoreTypes.Money
+        required: false
+      rebilledFee:
+        type: CoreTypes.Money
+        required: false
       archivedDate:
         type: date-only
         required: false
         description: If the project is archived, this date speciifies when that happened. If not, will be either null or not present.
-      firm: Firm
+      firm:
+        type: Firm
       contacts:
         type: array
         items: ContactShort
         description: An array containing all contacts associated with this project
+        minItems: 1
       leader:
         type: CoreTypes.MemberShort
         description: Is the projet lead within ETIC INSA Technologies
@@ -179,11 +195,12 @@ types:
         type: array
         items: CoreTypes.MemberShort
         description: An array containing all members working as consultants for the project
+        minItems: 1
       qualityManagers:
         type: array
         items: CoreTypes.MemberShort
         description: An array containing one or two members of ETIC who ensure quality control
-        minItems: 0
+        minItems: 1
         maxItems: 2
     example:
       {
@@ -191,7 +208,11 @@ types:
         number: 4125,
         name: "Création d'un site internet",
         description: "Le site web est un magasin en ligne",
-        field: "IF",
+        department: {
+          id: 7,
+          label: "TC",
+          name: "Télécommunications, Services & Usages"
+        },
         status: {
           id: 1,
           label: "En cours"
