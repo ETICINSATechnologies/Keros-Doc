@@ -100,8 +100,11 @@ types:
         type: string
       description:
         type: string
-      departmentId:
+      fieldId:
         type: number
+      provenanceId:
+        type: number
+        required: false
       statusId:
         type: number
       signDate:
@@ -113,10 +116,16 @@ types:
       managementFee:
         type: CoreTypes.Money
         required: false
-      applicationFee:
+      realizationFee:
         type: CoreTypes.Money
         required: false
       rebilledFee:
+        type: CoreTypes.Money
+        required: false
+      ecoparticipationFee:
+        type: CoreTypes.Money
+        required: false
+      outsourcingFee:
         type: CoreTypes.Money
         required: false
       archivedDate:
@@ -128,8 +137,11 @@ types:
         type: array
         items: number
         minItems: 1
-      leaderId:
-        type: number
+      leaderIds:
+        type: array
+        items: number
+        minItems: 1
+        maxItems: 3
       consultantIds:
         type: array
         items: number
@@ -138,7 +150,7 @@ types:
         type: array
         items: number
         minItems: 1
-        maxItems: 2
+        maxItems: 3
 
   UpdateStudy:
     type: object
@@ -156,7 +168,10 @@ types:
       description:
         type: string
         required: false
-      departmentId:
+      fieldId:
+        type: number
+        required: false
+      provenanceId:
         type: number
         required: false
       statusId:
@@ -171,10 +186,16 @@ types:
       managementFee:
         type: CoreTypes.Money
         required: false
-      applicationFee:
+      realizationFee:
         type: CoreTypes.Money
         required: false
       rebilledFee:
+        type: CoreTypes.Money
+        required: false
+      ecoparticipationFee:
+        type: CoreTypes.Money
+        required: false
+      outsourcingFee:
         type: CoreTypes.Money
         required: false
       archivedDate:
@@ -188,8 +209,11 @@ types:
         items: number
         minItems: 1
         required: false
-      leaderId:
-        type: number
+      leaderIds:
+        type: array
+        items: number
+        minItems: 1
+        maxItems: 3
         required: false
       consultantIds:
         type: array
@@ -200,7 +224,7 @@ types:
         type: array
         items: number
         minItems: 1
-        maxItems: 2
+        maxItems: 3
         required: false
 
 

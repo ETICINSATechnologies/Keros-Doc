@@ -144,6 +144,29 @@ types:
         label: "En cours"
       }
 
+  StudyField:
+    type: object
+    properties:
+      id: number
+      label: string
+    example:
+      {
+        id: 2,
+        label: "Web"
+      }
+
+  StudyProvenance:
+    type: object
+    properties:
+      id: number
+      label: string
+    example:
+      {
+        id: 4,
+        label: "Phoning"
+      }
+
+
   Study:
     type: object
     description: A study (could also be called a project) with all associated business information
@@ -158,23 +181,30 @@ types:
         type: string
       description:
         type: string
-      department:
-        type: CoreTypes.Department
+      field:
+        type: StudyField
       status:
         type: StudyStatus
+      provenance:
+        type: StudyProvenance
       signDate:
         type: date-only
-        required: false
       endDate:
         type: date-only
         required: false
       managementFee:
         type: CoreTypes.Money
         required: false
-      applicationFee:
+      realizationFee:
         type: CoreTypes.Money
         required: false
       rebilledFee:
+        type: CoreTypes.Money
+        required: false
+      ecoparticipationFee:
+        type: CoreTypes.Money
+        required: false
+      outsourcingFee:
         type: CoreTypes.Money
         required: false
       archivedDate:
@@ -188,9 +218,12 @@ types:
         items: ContactShort
         description: An array containing all contacts associated with this project
         minItems: 1
-      leader:
-        type: CoreTypes.MemberShort
-        description: Is the projet lead within ETIC INSA Technologies
+      leaders:
+        type: array
+        items: CoreTypes.MemberShort
+        description: An array containing the projet leads within ETIC INSA Technologies
+        minItems: 1
+        maxItems: 3
       consultants:
         type: array
         items: CoreTypes.MemberShort
@@ -201,27 +234,32 @@ types:
         items: CoreTypes.MemberShort
         description: An array containing one or two members of ETIC who ensure quality control
         minItems: 1
-        maxItems: 2
+        maxItems: 3
     example:
       {
         id: 1,
         number: 4125,
         name: "Création d'un site internet",
         description: "Le site web est un magasin en ligne",
-        department: {
+        field: {
           id: 7,
-          label: "TC",
-          name: "Télécommunications, Services & Usages"
+          label: "Web"
         },
         status: {
           id: 1,
           label: "En cours"
         },
+        provenance: {
+          id: 1,
+          label: "Phoning"
+        },
         signDate: "2018-11-20",
         endDate: "2019-12-01",
         managementFee: 112,
-        applicationFee: 174,
+        realizationFee: 174,
         rebilledFee: 25,
+        ecoparticipationFee: 100,
+        outsourcingFee: 45,
         archivedDate: "2020-01-02",
         firm: {
           id: 1,
@@ -245,16 +283,18 @@ types:
             position: "Directeur de commerce"
           }
         ],
-        leader: {
-          id: 1,
-          username: "clion",
-          firstName: "charlène",
-          lastName: "lion",
-          gender: {
-              id: 2,
-              label: "F"
+        leaders: [
+          {
+            id: 1,
+            username: "clion",
+            firstName: "charlène",
+            lastName: "lion",
+            gender: {
+                id: 2,
+                label: "F"
+            }
           }
-        },
+        ],
         consultants: [
           {
             id: 1,
