@@ -30,17 +30,28 @@ types:
       name:
         type: string
         description: The company's name, or the persons name if it is a physical person
-      addressId: number
-      typeId:
-        type: number
-        description: The ID of the firm's type
+      address: CoreTypes.Address
+      type: FirmType
     example:
       {
         id: 1,
         siret: "544683216546",
         name: "Cool Company Inc.",
-        addressId: 5,
-        typeId: 2
+        address: {
+          id: 1,
+          line1: "13 rue du renard",
+          line2: "appt 421",
+          city: "Villeurbanne",
+          postalCode: "69100",
+          country: {
+            id: 5,
+            label: "France"
+          }
+        },
+        type: {
+          id: 1,
+          label: "PME/PMI"
+        }
       }
 
   Contact:
@@ -85,8 +96,21 @@ types:
           id: 1,
           siret: "544683216546",
           name: "Cool Company Inc.",
-          addressId: 5,
-          typeId: 2
+          address: {
+            id: 1,
+            line1: "13 rue du renard",
+            line2: "appt 421",
+            city: "Villeurbanne",
+            postalCode: "69100",
+            country: {
+              id: 5,
+              label: "France"
+            }
+          },
+          type: {
+            id: 1,
+            label: "PME/PMI"
+          }
         },
         email: "thomas.edison@nomail.com",
         telephone: "0033575489521",
@@ -265,8 +289,21 @@ types:
           id: 1,
           siret: "544683216546",
           name: "Cool Company Inc.",
-          addressId: 5,
-          typeId: 2
+          address: {
+            id: 1,
+            line1: "13 rue du renard",
+            line2: "appt 421",
+            city: "Villeurbanne",
+            postalCode: "69100",
+            country: {
+              id: 5,
+              label: "France"
+            }
+          },
+          type: {
+            id: 1,
+            label: "PME/PMI"
+          }
         },
         contacts: [
           {

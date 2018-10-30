@@ -18,6 +18,11 @@ types:
           - A
           - I
     description: Gender of the user, with A being "Autre" and I being "Inconnu".
+    example:
+      {
+        id: 2,
+        label: "H",
+      }
 
   Department:
     type: object
@@ -86,27 +91,43 @@ types:
     properties:
       id: number
       label: string
-      poleId:
-        type: number
-        description: The ID of the member's pole. If not a ETIC position, then it's null (ex client)
+      pole:
+        type: Pole
         required: false
     example:
       {
         id: 1,
         label: "Président(e)",
-        poleId: 5
+        pole: {
+          id: 1,
+          label: "Com",
+          name: "Communication"
+        }
       }
 
   Address:
     type: object
     properties:
+      id: number
       line1: string
       line2:
         type: string
         required: false
       city: string
       postalCode: string
-      countryId: number
+      country: Country
+    example:
+      {
+        id: 1,
+        line1: "13 rue du renard",
+        line2: "appt 421",
+        city: "Villeurbanne",
+        postalCode: "69100",
+        country: {
+          id: 5,
+          label: "France"
+        }
+      }
 
   Member:
     type: object
@@ -116,13 +137,13 @@ types:
       username: string
       firstName: string
       lastName: string
-      genderId: number
+      gender: Gender
       email: string
       birthday:
         type: date-only
         description: No time, only a date of format YYYY-MM-DD
-      departmentId:
-        type: number
+      department:
+        type: Department
         required: false
         description: the ID of the member's school department
       schoolYear:
@@ -131,26 +152,53 @@ types:
       telephone:
         type: string
         required: false
-      addressId: number
-      positionIds:
+      address: Address
+      positions:
         type: array
-        items: number
+        items: Position
         required: true
-        description: The ID of the member's position(s) within ETIC INSA Technologies. Can have from 1 to N items.
+        description: The member's position(s) within ETIC INSA Technologies. Can have from 1 to N items.
     example:
       {
         id: 5,
         username: "jconnor",
         firstName: "John",
         lastName: "Connor",
-        genderId: 5,
+        gender: {
+          id: 2,
+          label: "H",
+        },
         email: "john.conor@terminator.com",
         birthday: "1967-01-20",
-        departmentId: 5,
+        department: {
+          id: 7,
+          label: "TC",
+          name: "Télécommunications, Services & Usages"
+        },
         schoolYear: 3,
         telephone: "0033675489521",
-        addressId: 7,
-        positionIds: [4, 6]
+        address: {
+          id: 1,
+          line1: "13 rue du renard",
+          line2: "appt 421",
+          city: "Villeurbanne",
+          postalCode: "69100",
+          country: {
+            id: 5,
+            label: "France"
+          }
+        },
+        positions: [
+          {
+            id: 1,
+            label: "Président(e)",
+            pole: {
+              id: 1,
+              label: "Com",
+              name: "Communication"
+            }
+          }
+        ]
       }
 
   MemberShort:
