@@ -26,13 +26,10 @@ types:
         required: false
       name:
         type: string
-        required: false
-      address:
-        type: CoreTypes.Address
-        required: false
+      address: CoreTypes.Address
       typeId:
         type: number
-        required: false
+        description: The ID of the firm's type
       
   CreateContact:
     type: object
@@ -62,23 +59,13 @@ types:
 
   UpdateContact:
     type: object
-    description: Represents a contact update request. Any or none of the fields can be present.
+    description: Represents a contact update request. Any none present fields is like deleting the field
     properties:
-      firstName:
-        type: string
-        required: false
-      lastName:
-        type: string
-        required: false
-      genderId:
-        type: number
-        required: false
-      firmId:
-        type: number
-        required: false
-      email:
-        type: string
-        required: false
+      firstName: string
+      lastName: string
+      genderId: number
+      firmId: number
+      email: string
       telephone:
         type: string
         required: false
@@ -94,6 +81,7 @@ types:
       old:
         type: boolean
         required: false
+        default: false
 
   CreateStudy:
     type: object
@@ -101,7 +89,7 @@ types:
     properties:
       id:
         type: number
-      number:
+      projectNumber:
         type: number
       name:
         type: string
@@ -161,29 +149,23 @@ types:
 
   UpdateStudy:
     type: object
-    description: Represents a Study update request. Any or none of the fields can be present.
+    description: Represents a Study update request. Any none present fields is like deleting the field
     properties:
       id:
         type: number
-        required: false
-      number:
+      projectNumber:
         type: number
-        required: false
       name:
         type: string
-        required: false
       description:
         type: string
-        required: false
       fieldId:
         type: number
-        required: false
       provenanceId:
         type: number
         required: false
       statusId:
         type: number
-        required: false
       signDate:
         type: date-only
         required: false
@@ -210,28 +192,21 @@ types:
         required: false
       firmId:
         type: number
-        required: false
       contactIds:
         type: array
         items: number
         minItems: 1
-        required: false
       leaderIds:
         type: array
         items: number
         minItems: 1
         maxItems: 3
-        required: false
       consultantIds:
         type: array
         items: number
         minItems: 1
-        required: false
       qualityManagerIds:
         type: array
         items: number
         minItems: 1
         maxItems: 3
-        required: false
-
-

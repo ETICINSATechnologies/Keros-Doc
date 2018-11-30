@@ -33,29 +33,19 @@ types:
 
   UpdateMember:
     type: object
-    description: Represents a member update request. Any or none of the fields can be present.
+    description: Represents a member update request. Any none present fields is like deleting the field
     properties:
-      username:
-        type: string
-        required: false
+      username: string
       password:
         type: string
         required: false
-      firstName:
-        type: string
-        required: false
-      lastName:
-        type: string
-        required: false
-      genderId:
-        type: number
-        required: false
-      email:
-        type: string
-        required: false
+      firstName: string
+      lastName: string
+      genderId: number
+      email: string
       birthday:
         type: date-only
-        required: false
+        description: No time, only a date of format YYYY-MM-DD
       departmentId:
         type: number
         required: false
@@ -65,9 +55,7 @@ types:
       telephone:
         type: string
         required: false
-      address:
-        type: CoreTypes.Address
-        required: false
+      address: CoreTypes.Address
       positionIds:
         type: array
         items: number

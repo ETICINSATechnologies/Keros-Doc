@@ -138,6 +138,30 @@ resourceTypes:
             application/json:
               type: <<item>>
 
+  GetAndUpdateConnectedUser:
+    get:
+      is: [Traits.hasCommonError]
+      description: Gets the current connected user
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<item>>
+    put:
+      is: [Traits.hasCommonError]
+      description: Updates the current connected user
+      body: <<itemUpdateRequest>>
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          description: The <<item>> was successfully updated added
+          body:
+            application/json:
+              type: <<item>>
+
   getPageAndCreate:
     get:
       is: [Traits.searchable, Traits.orderable, Traits.pageable, Traits.hasCommonError]

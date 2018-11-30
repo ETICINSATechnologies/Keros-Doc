@@ -43,34 +43,35 @@ description: This API represents the interface between Keros-Back and Keros-Fron
   description: Core endpoints, used at multiple places in the application
   /member:
     type:  { GeneralResourceTypes.getPageAndCreate: {item : CoreTypes.Member, itemRequest : CoreRequests.CreateMember } }
+  /member/me:
+    type: { GeneralResourceTypes.GetAndUpdateConnectedUser: {item : CoreTypes.Member, itemUpdateRequest : CoreRequests.UpdateMember  } }
   /member/{id}:
     type: { GeneralResourceTypes.GetAndUpdateItem: {item : CoreTypes.Member, itemUpdateRequest : CoreRequests.UpdateMember  } }
-
   /country:
     type:  { GeneralResourceTypes.GetAll : {item : CoreTypes.Country } }
   /country/{id}:
     type:  { GeneralResourceTypes.GetItem: {item : CoreTypes.Country } }
-
   /address/{id}:
     type:  { GeneralResourceTypes.GetItem: {item : CoreTypes.Address } }
-
   /position:
     type:  { GeneralResourceTypes.GetAll: {item : CoreTypes.Position } }
   /position/{id}:
     type:  { GeneralResourceTypes.GetItem: {item : CoreTypes.Position } }
-
   /department:
     type:  { GeneralResourceTypes.GetAll: {item : CoreTypes.Department } }
   /department/{id}:
     type:  { GeneralResourceTypes.GetItem: {item : CoreTypes.Department } }
-
+  /pole:
+    type:  { GeneralResourceTypes.GetAll: {item : CoreTypes.Pole } }
+  /pole/{id}:
+    type:  { GeneralResourceTypes.GetItem: {item : CoreTypes.Pole } }
   /gender:
     type:  { GeneralResourceTypes.GetAll: {item : CoreTypes.Gender } }
 
 /ua:
   description: UA endpoints
   /firm-type:
-    type:  { GeneralResourceTypes.GetAll: {item : UATypes.FirmType} }
+    type:  { GeneralResourceTypes.GetAll: {item : UATypes.FirmType } }
   /firm-type/{id}:
     type: { GeneralResourceTypes.GetItem: {item : UATypes.FirmType } }
   /firm:
@@ -81,6 +82,18 @@ description: This API represents the interface between Keros-Back and Keros-Fron
     type:  { GeneralResourceTypes.getPageAndCreate: {item : UATypes.Contact, itemRequest : UARequests.CreateContact } }
   /contact/{id}:
     type: { GeneralResourceTypes.GetAndUpdateItem: {item : UATypes.Contact, itemUpdateRequest : UARequests.UpdateContact  } }
+  /status:
+    type:  { GeneralResourceTypes.GetAll: {item : UATypes.StudyStatus } }
+  /status/{id}:
+    type: { GeneralResourceTypes.GetItem: {item : UATypes.StudyStatus } }
+  /provenance:
+    type:  { GeneralResourceTypes.GetAll: {item : UATypes.StudyProvenance } }
+  /provenance/{id}:
+    type: { GeneralResourceTypes.GetItem: {item : UATypes.StudyProvenance } }
+  /field:
+    type:  { GeneralResourceTypes.GetAll: {item : UATypes.StudyField } }
+  /field/{id}:
+    type: { GeneralResourceTypes.GetItem: {item : UATypes.StudyField } }
   /study:
     type:  { GeneralResourceTypes.getPageAndCreate: {item : UATypes.Study, itemRequest : UARequests.CreateStudy } }
   /study/{id}:
