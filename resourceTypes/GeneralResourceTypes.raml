@@ -45,7 +45,7 @@ resourceTypes:
                       totalItems: 40,
                       itemsPerPage: 25
                     }
-  GetItem:
+  Get:
     get:
       is: [Traits.hasCommonError]
       description: Gets a <<item>> by ID
@@ -57,7 +57,7 @@ resourceTypes:
             application/json:
               type: <<item>>
 
-  DeleteItem:
+  Delete:
     delete:
       is: [Traits.hasCommonError]
       description: Deletes an <<item>> by ID
@@ -67,7 +67,7 @@ resourceTypes:
         204:
           description: The <<item>> was correctly deleted
 
-  CreateItem:
+  Create:
     post:
       is: [Traits.hasCommonError]
       description: Creates an <<item>> and returns it
@@ -80,7 +80,7 @@ resourceTypes:
           body:
             application/json:
               type: <<item>>
-  UpdateItem:
+  Update:
     put:
       is: [Traits.hasCommonError]
       description: Updates an <<item>> and returns it
@@ -95,7 +95,7 @@ resourceTypes:
               type: <<item>>
 
 # Various combinations of Resource Types
-  GetAndDeleteItem:
+  Get+Delete:
     get:
       is: [Traits.hasCommonError]
       description: Gets a <<item>> by ID
@@ -114,7 +114,7 @@ resourceTypes:
       responses:
         204:
           description: The <<item>> was correctly deleted
-  GetAndUpdateItem:
+  Get+Update:
     get:
       is: [Traits.hasCommonError]
       description: Gets a <<item>> by ID
@@ -138,7 +138,39 @@ resourceTypes:
             application/json:
               type: <<item>>
 
-  GetAndUpdateConnectedUser:
+  Get+Update+Delete:
+    get:
+      is: [Traits.hasCommonError]
+      description: Gets a <<item>> by ID
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<item>>
+    put:
+      is: [Traits.hasCommonError]
+      description: Updates an <<item>> and returns it
+      body: <<itemUpdateRequest>>
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          description: The <<item>> was successfully updated added
+          body:
+            application/json:
+              type: <<item>>
+    delete:
+      is: [Traits.hasCommonError]
+      description: Deletes an <<item>> by ID
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        204:
+          description: The <<item>> was correctly deleted
+
+  ConnectedUser-Get+Update:
     get:
       is: [Traits.hasCommonError]
       description: Gets the current connected user
@@ -162,7 +194,7 @@ resourceTypes:
             application/json:
               type: <<item>>
 
-  getPageAndCreate:
+  getPage+Create:
     get:
       is: [Traits.searchable, Traits.orderable, Traits.pageable, Traits.hasCommonError]
       description: 'Gets a page of <<item>>. The response is under the form { "content": [ITEMS], "meta": {META} }'
@@ -202,3 +234,5 @@ resourceTypes:
           body:
             application/json:
               type: <<item>>
+
+  
