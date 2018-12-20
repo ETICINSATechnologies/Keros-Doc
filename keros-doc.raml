@@ -42,7 +42,7 @@ description: This API represents the interface between Keros-Back and Keros-Fron
 /core:
   description: Core endpoints, used at multiple places in the application
   /member:
-    type:  { GeneralResourceTypes.getPage+Create: {item : CoreTypes.Member, itemRequest : CoreRequests.CreateMember } }
+    type:  { GeneralResourceTypes.GetPage+Create: {item : CoreTypes.Member, itemRequest : CoreRequests.CreateMember } }
   /member/me:
     type: { GeneralResourceTypes.ConnectedUser-Get+Update: {item : CoreTypes.Member, itemUpdateRequest : CoreRequests.UpdateMember  } }
   /member/{id}:
@@ -75,11 +75,11 @@ description: This API represents the interface between Keros-Back and Keros-Fron
   /firm-type/{id}:
     type: { GeneralResourceTypes.Get: {item : UATypes.FirmType } }
   /firm:
-    type:  { GeneralResourceTypes.getPage+Create: {item : UATypes.Firm, itemRequest : UARequests.CreateFirm } }
+    type:  { GeneralResourceTypes.GetPage+Create: {item : UATypes.Firm, itemRequest : UARequests.CreateFirm } }
   /firm/{id}:
     type: { GeneralResourceTypes.Get+Update+Delete: {item : UATypes.Firm, itemUpdateRequest : UARequests.UpdateFirm  } }
   /contact:
-    type:  { GeneralResourceTypes.getPage+Create: {item : UATypes.Contact, itemRequest : UARequests.CreateContact } }
+    type:  { GeneralResourceTypes.GetPage+Create: {item : UATypes.Contact, itemRequest : UARequests.CreateContact } }
   /contact/{id}:
     type: { GeneralResourceTypes.Get+Update+Delete: {item : UATypes.Contact, itemUpdateRequest : UARequests.UpdateContact  } }
   /status:
@@ -95,6 +95,8 @@ description: This API represents the interface between Keros-Back and Keros-Fron
   /field/{id}:
     type: { GeneralResourceTypes.Get: {item : UATypes.StudyField } }
   /study:
-    type:  { GeneralResourceTypes.getPage+Create: {item : UATypes.Study, itemRequest : UARequests.CreateStudy } }
+    type:  { GeneralResourceTypes.GetPage+Create: {item : UATypes.Study, itemRequest : UARequests.CreateStudy } }
+  /study/me:
+    type:  { GeneralResourceTypes.GetPage: {item : UATypes.Study } }
   /study/{id}:
     type: { GeneralResourceTypes.Get+Update+Delete: {item : UATypes.Study, itemUpdateRequest : UARequests.UpdateStudy  } }

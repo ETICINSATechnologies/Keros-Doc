@@ -194,7 +194,7 @@ resourceTypes:
             application/json:
               type: <<item>>
 
-  getPage+Create:
+  GetPage+Create:
     get:
       is: [Traits.searchable, Traits.orderable, Traits.pageable, Traits.hasCommonError]
       description: 'Gets a page of <<item>>. The response is under the form { "content": [ITEMS], "meta": {META} }'
