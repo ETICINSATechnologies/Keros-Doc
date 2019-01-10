@@ -1,0 +1,17 @@
+#%RAML 1.0 Library
+uses:
+  GeneralTypes: ../types/GeneralTypes.raml
+  Security: ../securitySchemes/security.raml
+  Traits: ../traits/traits.raml
+
+resourceTypes:
+
+  GetTemplate:
+    get:
+      is: [Traits.hasCommonError]
+      description: Gets a template filled in with data from a <<item>>
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        302:
+          description: Redirect to generated file

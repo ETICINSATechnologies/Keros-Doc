@@ -1,6 +1,7 @@
 #%RAML 1.0 Library
 uses:
   CoreTypes: ../Core/CoreTypes.raml
+  DocumentTypes: ../Document/DocumentTypes.raml
 types:
   FirmType:
     type: object
@@ -198,9 +199,6 @@ types:
       id:
         type: number
         required: true
-      projectNumber:
-        type: number
-        description: The real life number associated with this project. In other words, the project number used on physical papers
       name:
         type: string
       description:
@@ -259,10 +257,13 @@ types:
         description: An array containing one or two members of ETIC who ensure quality control
         minItems: 1
         maxItems: 3
+      templates:
+        type: array
+        items: DocumentTypes.Template
+        description: An array containing multiple filled in templates relating to the study with links to download the publiposted document.
     example:
       {
         id: 1,
-        projectNumber: 4125,
         name: "Création d'un site internet",
         description: "Le site web est un magasin en ligne",
         field: {
@@ -354,6 +355,13 @@ types:
                 id: 2,
                 label: "F"
             }
+          }
+        ],
+        templates: [
+          {
+            id: 1,
+            name: "Avenant",
+            link: "https://keros.back-api/study/5/template/1"
           }
         ]
       }

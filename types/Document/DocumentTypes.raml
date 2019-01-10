@@ -1,0 +1,11 @@
+#%RAML 1.0 Library
+types:
+  Template:
+    type: object
+    description: Represents a template that can be used, linked and filled in from various entities
+    properties: 
+      id: number
+      name: string
+      link:
+        type: string
+        description: Link to ducument from outside, which has permission check. Generally this link, after permission check, returns a redirect (302) to the actual resource that is very hard to find.

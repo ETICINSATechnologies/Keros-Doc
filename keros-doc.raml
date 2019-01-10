@@ -4,6 +4,7 @@ uses:
   GeneralTypes: ./types/GeneralTypes.raml
   AuthTypes: ./types/AuthTypes.raml
   GeneralResourceTypes: ./resourceTypes/GeneralResourceTypes.raml
+  DocumentResourceTypes: ./resourceTypes/DocumentResourceTypes.raml
   Security: ./securitySchemes/security.raml
 
   CoreTypes: ./types/Core/CoreTypes.raml
@@ -100,3 +101,6 @@ description: This API represents the interface between Keros-Back and Keros-Fron
     type:  { GeneralResourceTypes.GetPage: {item : UATypes.Study } }
   /study/{id}:
     type: { GeneralResourceTypes.Get+Update+Delete: {item : UATypes.Study, itemUpdateRequest : UARequests.UpdateStudy  } }
+  /study/{studyId}/template/{templateId}:
+    type:  { DocumentResourceTypes.GetTemplate: {item: UATypes.Study } }
+
