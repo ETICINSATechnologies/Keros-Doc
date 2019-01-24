@@ -259,10 +259,6 @@ types:
         description: An array containing one or two members of ETIC who ensure quality control
         minItems: 1
         maxItems: 3
-      templates:
-        type: array
-        items: DocumentTypes.Template
-        description: An array containing multiple filled in templates relating to the study with links to download the publiposted document.
     example:
       {
         id: 1,
@@ -358,13 +354,6 @@ types:
                 id: 2,
                 label: "F"
             }
-          }
-        ],
-        templates: [
-          {
-            id: 1,
-            name: "Avenant",
-            link: "https://keros.back-api/study/5/template/1"
           }
         ]
       }

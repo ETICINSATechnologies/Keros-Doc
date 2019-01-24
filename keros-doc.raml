@@ -6,6 +6,7 @@ uses:
   GeneralResourceTypes: ./resourceTypes/GeneralResourceTypes.raml
   DocumentResourceTypes: ./resourceTypes/DocumentResourceTypes.raml
   Security: ./securitySchemes/security.raml
+  Traits: ./traits/traits.raml
 
   CoreTypes: ./types/Core/CoreTypes.raml
   CoreRequests: ./types/Core/CoreRequests.raml
@@ -44,6 +45,16 @@ description: This API represents the interface between Keros-Back and Keros-Fron
   description: Core endpoints, used at multiple places in the application
   /member:
     type:  { GeneralResourceTypes.GetPage+Create: {item : CoreTypes.Member, itemRequest : CoreRequests.CreateMember } }
+    get:
+      queryParameters:
+        poleId:
+          description: If specified, add a search criteria to the users pole
+          type: integer
+          required: false
+        positionId:
+          description: If specified, add a search criteria to the users position
+          type: integer
+          required: false
   /member/me:
     type: { GeneralResourceTypes.ConnectedUser-Get+Update: {item : CoreTypes.Member, itemUpdateRequest : CoreRequests.UpdateMember  } }
   /member/{id}:
@@ -81,6 +92,12 @@ description: This API represents the interface between Keros-Back and Keros-Fron
     type: { GeneralResourceTypes.Get+Update+Delete: {item : UATypes.Firm, itemUpdateRequest : UARequests.UpdateFirm  } }
   /contact:
     type:  { GeneralResourceTypes.GetPage+Create: {item : UATypes.Contact, itemRequest : UARequests.CreateContact } }
+    get:
+      queryParameters:
+        firmId:
+          description: If specified, add a search criteria to the contacts firm
+          type: integer
+          required: false
   /contact/{id}:
     type: { GeneralResourceTypes.Get+Update+Delete: {item : UATypes.Contact, itemUpdateRequest : UARequests.UpdateContact  } }
   /status:
@@ -101,6 +118,57 @@ description: This API represents the interface between Keros-Back and Keros-Fron
     type:  { GeneralResourceTypes.GetPage: {item : UATypes.Study } }
   /study/{id}:
     type: { GeneralResourceTypes.Get+Update+Delete: {item : UATypes.Study, itemUpdateRequest : UARequests.UpdateStudy  } }
+  /study/{studyId}/documents:
+    get:
+      is: [Traits.hasCommonError]
+      description: Gets the document information pertaining to the study
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          body:
+            application/json:
+              type: object
+              properties:
+                templates:
+                  type: array
+                  items:
+                    type: object
+                    properties: 
+                      id: number
+                      name: 
+                        type: string
+                        description: The display name of the template
+                      generateLocation:
+                        type: string
+                        description: The URI to call to generate the template and get a secret location
+              example: 
+                {
+                  "templates": [
+                    {
+                      "id": 1,
+                      "name": "Contrat de confidentialité",
+                      "generateLocation": "http://keros-api-dev.etic-insa.com/api/v1/ua/study/5/template/1"
+                    }
+                  ]
+                }
   /study/{studyId}/template/{templateId}:
-    type:  { DocumentResourceTypes.GetTemplate: {item: UATypes.Study } }
+    get:
+      is: [Traits.hasCommonError]
+      description: Asks for the template to be filled in with data from the study and returns the secret location of the file
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          body:
+            application/json:
+              type: object
+              properties:
+                location:
+                  type: string
+                  description: The secret location of the generated template - the user should be redirected here
+              example:
+                {
+                  "location": "http://keros-api-dev.etic-insa.com/api/v1/core/document/a946092b-7387-4f42-bcd0-d4e43ccab89e"
+                }
 
