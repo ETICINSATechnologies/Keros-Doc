@@ -2,6 +2,14 @@
 uses:
   CoreTypes: ./CoreTypes.raml
 types:
+  PositionRequest:
+    type: object
+    description: A tuple of position ID and linked information
+    properties: 
+      id: number
+      year: number
+      isBoard: boolean
+
   CreateMember:
     type: object
     description: Represents a member creation request. Basically a Member object without server defined info.
@@ -25,11 +33,11 @@ types:
         type: string
         required: false
       address: CoreTypes.Address
-      positionIds:
+      positions:
         type: array
-        items: number
+        items: PositionRequest
         required: true
-        description: The ID of the member's position(s) within ETIC INSA Technologies. Can have from 1 to N items.
+        description: The member's position(s) within ETIC INSA Technologies. Can have from 1 to N items.
 
   UpdateMember:
     type: object
@@ -56,8 +64,8 @@ types:
         type: string
         required: false
       address: CoreTypes.Address
-      positionIds:
+      positions:
         type: array
-        items: number
+        items: PositionRequest
         required: true
-        description: The ID of the member's position(s) within ETIC INSA Technologies. Can have from 1 to N items.
+        description: The member's position(s) within ETIC INSA Technologies. Can have from 1 to N items.

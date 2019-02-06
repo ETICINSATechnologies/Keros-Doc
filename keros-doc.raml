@@ -142,13 +142,21 @@ description: This API represents the interface between Keros-Back and Keros-Fron
                       generateLocation:
                         type: string
                         description: The URI to call to generate the template and get a secret location
+                      uploadLocation:
+                        type: string
+                        description: The URL to call to upload the document in it's final version
+                      downloadLocation:
+                        type: string
+                        description: The URL to call to download the document in it's final version
               example: 
                 {
                   "templates": [
                     {
                       "id": 1,
                       "name": "Contrat de confidentialité",
-                      "generateLocation": "http://keros-api-dev.etic-insa.com/api/v1/ua/study/5/template/1"
+                      "generateLocation": "http://keros-api-dev.etic-insa.com/api/v1/ua/study/5/template/1",
+                      "uploadLocation": "http://keros-api-dev.etic-insa.com/api/v1/ua/study/5/document/1",
+                      "downloadLocation": "http://keros-api-dev.etic-insa.com/api/v1/ua/study/5/document/1"
                     }
                   ]
                 }
@@ -167,6 +175,33 @@ description: This API represents the interface between Keros-Back and Keros-Fron
                 location:
                   type: string
                   description: The secret location of the generated template - the user should be redirected here
+              example:
+                {
+                  "location": "http://keros-api-dev.etic-insa.com/api/v1/core/document/a946092b-7387-4f42-bcd0-d4e43ccab89e"
+                }
+  /study/{studyId}/document/{documentId}:
+    post:
+      is: [Traits.hasCommonError]
+      description: Uploads a document in it's final version once verified by UA. If it already exists it must be replaced
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          description: Document is correctly uploaded
+    get:
+      is: [Traits.hasCommonError]
+      description: Downloads a document in it's final version once verified by UA
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          body:
+            application/json:
+              type: object
+              properties:
+                location:
+                  type: string
+                  description: The secret location of the document - the user should be redirected here
               example:
                 {
                   "location": "http://keros-api-dev.etic-insa.com/api/v1/core/document/a946092b-7387-4f42-bcd0-d4e43ccab89e"
