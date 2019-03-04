@@ -214,6 +214,66 @@ description: This API represents the interface between Keros-Back and Keros-Fron
   /facture-types:
     type:  { GeneralResourceTypes.GetAll: {item : TresoTypes.FactureType } }
   /facture:
-    type:  { GeneralResourceTypes.GetPage+Create: {item : TresoTypes.Facture, itemRequest : TresoRequests.CreateFacture } }
+    type:  { GeneralResourceTypes.GetPage+Create: {item : TresoTypes.Facture, itemRequest : TresoRequests.FactureRequest } }
   /facture/{id}:
-    type: { GeneralResourceTypes.Get+Update+Delete: {item : TresoTypes.Facture, itemUpdateRequest : TresoRequests.CreateFacture  } }
+    type: { GeneralResourceTypes.Get+Update+Delete: {item : TresoTypes.Facture, itemUpdateRequest : TresoRequests.FactureRequest  } }
+  /facture/{id}/validate-ua:
+    post:
+      is: [Traits.hasCommonError]
+      description: Si envoyé par quelqu'un en UA, permet de valider l'étape "Validation UA". Stocke le membre qui a validé et la date de validation
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          description: Utilisateur a les droits et la facture est validé par UA
+  /facture/{id}/validate-perf:
+    post:
+      is: [Traits.hasCommonError]
+      description: Si envoyé par quelqu'un en perf, permet de valider l'étape "Validation Perf". Stocke le membre qui a validé et la date de validation
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          description: Utilisateur a les droits et la facture est validé par perf
+  /facture/{id}/generateDocument:
+    get:
+      is: [Traits.hasCommonError]
+      description: Renvoie un lien de téléchargement de la facture publipostée
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          body:
+            application/json:
+              type: object
+              properties:
+                location:
+                  type: string
+                  description: Le lien secret du document - l'utilisateur devra être renvoyé sur le lien par le front
+              example:
+                {
+                  "location": "http://keros-api-dev.etic-insa.com/api/v1/core/document/a946092b-7387-4f42-bcd0-d4e43ccab89e"
+                }
+
+  /payment-slip:
+    type:  { GeneralResourceTypes.GetPage+Create: {item : TresoTypes.BulletinVersement, itemRequest : TresoRequests.BulletinVersementRequest } }
+  /payment-slip/{id}:
+    type: { GeneralResourceTypes.Get+Update+Delete: {item : TresoTypes.BulletinVersement, itemUpdateRequest : TresoRequests.BulletinVersementRequest  } }
+  /payment-slip/{id}/validate-ua:
+    post:
+      is: [Traits.hasCommonError]
+      description: Si envoyé par quelqu'un en UA, permet de valider l'étape "Validation UA". Stocke le membre qui a validé et la date de validation
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          description: Utilisateur a les droits et le BV est validé par UA
+  /payment-slip/{id}/validate-perf:
+    post:
+      is: [Traits.hasCommonError]
+      description: Si envoyé par quelqu'un en perf, permet de valider l'étape "Validation Perf". Stocke le membre qui a validé et la date de validation
+      securedBy:
+        - Security.OAuth2-0
+      responses:
+        200:
+          description: Utilisateur a les droits et le BV est validé par perf

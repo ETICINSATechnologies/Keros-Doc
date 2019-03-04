@@ -35,6 +35,9 @@ types:
       study:
         type: UATypes.Study
         description: "L'étude concernée par la facture (contenant les informations comme l'entreprise, le sujet de la facture, ...)"
+      consultant:
+        type: CoreTypes.MemberShort
+        description: Le consultant concerné
       type:
         type: FactureType
       amountDescription:
@@ -67,6 +70,76 @@ types:
       additionalInformation:
         type: string
         description: Infos additionnelles saisies par n'importe qui qui a le droit d'éditer
+      createdDate:
+        type: datetime
+        description: La date de création
+      createdBy:
+        type: CoreTypes.MemberShort
+        description: La personne qui a créée la demande, en général le chef d'affaires
+      validatedByUa:
+        type: boolean
+        description: Si la demande est validé par les UA
+      validatedByUaDate:
+        type: datetime
+        description: La date à laquelle la demande a été validée par les UA
+      validatedByUaMember:
+        type: CoreTypes.MemberShort
+        description: La personne de UA qui a validé la demande
+      validatedByPerf:
+        type: boolean
+        description: Si la demande est validé par la perf
+      validatedByPerfDate:
+        type: datetime
+        description: La date à laquelle la demande a été validée par la perf
+      validatedByPerfMember:
+        type: CoreTypes.MemberShort
+        description: La personne de perf qui a validé la demande
+
+  BulletinVersement:
+    type: object
+    description: Un bulletin de versement fait avant de verser une somme à un consultant. Les champs sont initialisés avec les valeurs trouvées dans Firm/Study/etc mais sont modifiables - il faut donc stocker les valeurs en double.
+    properties:
+      id:
+        type: number
+        description: ID technique généré pour la facture
+      missionRecapNumber:
+        type: string
+        description: Un string saisie par les utilisateurs sans valeur technique représentant le numéro de Récapitulatif Mission (le doc qui lie le consultant à ETIC)
+        minLength: 5
+        maxLength: 32
+      consultantName:
+        type: string
+        description: Le nom/prénom du consultant. Par défaut le nom/prénom du consultant. Exemple - LOREM Ipsum-Nawa
+      consultantSocialSecurityNumber:
+        type: string
+        description: Le numéro de sécurité sociale du consultant. Saisie par l'utilisateur
+      address:
+        type: CoreTypes.Address
+        description: Addresse du consultant. Par défaut l'addresse du membre représentant le consultant.
+      email:
+        type: string
+        description: l'email du consultant. Par défaut l'email du membre
+      study:
+        type: UATypes.Study
+        description: L'étude pour laquelle le versement doit avoir lieu
+      clientName:
+        type: string
+        description: Nom du client de l'étude. Par défaut le nom du firm associé à l'étude
+      projectLead:
+        type: string
+        description: Nom/prénom du chargé d'affaires de l'étude. Modifiable donc stocké sous forme de string. Exemple - LOREM Ipsum-Nawa
+      isTotalJeh:
+        type: boolean
+        description: Vrai si le nombre de JEH spécifié représente le nombre total de JEH du consultant pour cette étude.
+      isStudyPaid:
+        type: boolean
+        description: Vrai si l’étude a été payée en totalité par le client.
+      amountDescription:
+        type: string
+        example: D’un montant de quatre mille quatre-vingt euros toutes taxes comprises (4080€ TTC), correspondant à la réalisation de 13 JEH
+        description: L'objet de la facture saisie par les utilisateurs (copié d'un document existant généralement)
+        minLength: 1
+        maxLength: 2048
       createdDate:
         type: datetime
         description: La date de création

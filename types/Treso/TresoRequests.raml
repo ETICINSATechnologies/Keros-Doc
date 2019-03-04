@@ -5,7 +5,7 @@ uses:
   UATypes: ../UA/UATypes.raml
   TresoTypes: ./TresoTypes.raml
 types:
-  CreateFacture:
+  FactureRequest:
     type: object
     description: Une demande de création de facture
     properties:
@@ -72,37 +72,59 @@ types:
         type: string
         description: Infos additionnelles saisies par n'importe qui qui a le droit d'éditer
         required: false
-      createdDate:
-        type: datetime
-        description: La date de création
-        required: true
-      createdById:
+
+  BulletinVersementRequest:
+    type: object
+    description: Une demande de création ou de modification de bulletin de versement
+    properties:
+      missionRecapNumber:
+        type: string
+        description: Un string saisie par les utilisateurs sans valeur technique représentant le numéro de Récapitulatif Mission (le doc qui lie le consultant à ETIC)
+        minLength: 5
+        maxLength: 32
+        required: false
+      consultantName:
+        type: string
+        description: Le nom/prénom du consultant. Par défaut le nom/prénom du consultant. Exemple - LOREM Ipsum-Nawa
+        required: false
+      consultantSocialSecurityNumber:
+        type: string
+        description: Le numéro de sécurité sociale du consultant. Saisie par l'utilisateur
+        required: false
+      address:
+        type: CoreRequests.AddressRequest
+        description: Addresse du consultant. Par défaut l'addresse du membre représentant le consultant.
+        required: false
+      email:
+        type: string
+        description: l'email du consultant. Par défaut l'email du membre
+        required: false
+      studyId:
         type: number
-        description: La personne qui a créée la demande, en général le chef d'affaires
-        required: true
-      validatedByUa:
+        description: L'étude pour laquelle le versement doit avoir lieu
+      consultantId:
+        type: number
+        description: Le consultant concerné
+      clientName:
+        type: string
+        description: Nom du client de l'étude. Par défaut le nom du firm associé à l'étude
+        required: false
+      projectLead:
+        type: string
+        description: Nom/prénom du chargé d'affaires de l'étude. Modifiable donc stocké sous forme de string. Exemple - LOREM Ipsum-Nawa
+        required: false
+      isTotalJeh:
         type: boolean
-        description: Si la demande est validé par les UA
+        description: Vrai si le nombre de JEH spécifié représente le nombre total de JEH du consultant pour cette étude.
         required: false
-        default: false
-      validatedByUaDate:
-        type: datetime
-        description: La date à laquelle la demande a été validée par les UA
-        required: false
-      validatedByUaMemberId:
-        type: number
-        description: La personne de UA qui a validé la demande
-        required: false
-      validatedByPerf:
+      isStudyPaid:
         type: boolean
-        description: Si la demande est validé par la perf
+        description: Vrai si l’étude a été payée en totalité par le client.
         required: false
-        default: false
-      validatedByPerfDate:
-        type: datetime
-        description: La date à laquelle la demande a été validée par la perf
-        required: false
-      validatedByPerfMemberId:
-        type: number
-        description: La personne de perf qui a validé la demande
+      amountDescription:
+        type: string
+        example: D’un montant de quatre mille quatre-vingt euros toutes taxes comprises (4080€ TTC), correspondant à la réalisation de 13 JEH
+        description: L'objet de la facture saisie par les utilisateurs (copié d'un document existant généralement)
+        minLength: 1
+        maxLength: 2048
         required: false
