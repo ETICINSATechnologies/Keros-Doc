@@ -1,4 +1,4 @@
-<!DOCTYPE HTML><html><head><title>Keros API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 7.1.0"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script type="text/javascript">
+<!DOCTYPE HTML><html><head><title>Keros API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 7.2.0"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script type="text/javascript">
       $(document).ready(function() {
         $('.page-header pre code, .top-resource-description pre code, .modal-body pre code').each(function(i, block) {
           hljs.highlightBlock(block);
@@ -266,20 +266,7 @@
 }</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Returned for any other error that is not handled</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
   "status": 500,
   "message": "Internal Service Error"
-}</code></pre></div></div><div class="tab-pane" id="core_member_get_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="core_member_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/core</span>/member</h4></div><div class="modal-body"><div class="alert alert-info"><p>Creates an CoreTypes.Member and returns it</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>OAuth2-0</b><p>Simplified OAuth2.0 authentication in which every request must containt a JWT token header</p></div><ul class="nav nav-tabs"><li class="active"><a href="#core_member_post_request" data-toggle="tab">Request</a></li><li><a href="#core_member_post_response" data-toggle="tab">Response</a></li><li><a href="#core_member_post_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="core_member_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>username</strong>: <em>required (string)</em></li><li><strong>password</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>genderId</strong>: <em>required (number)</em></li><li><strong>email</strong>: <em>required (string)</em></li><li><strong>birthday</strong>: <em>required (date-only)</em><p>No time, only a date of format YYYY-MM-DD</p></li><li><strong>departmentId</strong>: <em>(number)</em></li><li><strong>schoolYear</strong>: <em>(one of 1, 2, 3, 4, 5, 6, 7, 8)</em><p>A INSA Lyon school year</p></li><li><strong>telephone</strong>: <em>(string)</em></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
-  "id": 5,
-  "label": "France"
-}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
-  "id": 1,
-  "line1": "13 rue du renard",
-  "line2": "appt 421",
-  "city": "Villeurbanne",
-  "postalCode": "69100",
-  "country": {
-    "id": 5,
-    "label": "France"
-  }
-}</code></pre></div></li><li><strong>positions</strong>: <em>required (array of CoreRequests.PositionRequest)</em><p>The member&#39;s position(s) within ETIC INSA Technologies. Can have from 1 to N items.</p><p><strong>Items</strong>: PositionRequest</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>year</strong>: <em>required (number)</em></li><li><strong>isBoard</strong>: <em>required (boolean)</em></li></ul></div></li></ul></div><div class="tab-pane" id="core_member_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>The CoreTypes.Member was correctly added</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+}</code></pre></div></div><div class="tab-pane" id="core_member_get_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="core_member_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/core</span>/member</h4></div><div class="modal-body"><div class="alert alert-info"><p>Creates an CoreTypes.Member and returns it</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>OAuth2-0</b><p>Simplified OAuth2.0 authentication in which every request must containt a JWT token header</p></div><ul class="nav nav-tabs"><li class="active"><a href="#core_member_post_request" data-toggle="tab">Request</a></li><li><a href="#core_member_post_response" data-toggle="tab">Response</a></li><li><a href="#core_member_post_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="core_member_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>username</strong>: <em>required (string)</em></li><li><strong>password</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>genderId</strong>: <em>required (number)</em></li><li><strong>email</strong>: <em>required (string)</em></li><li><strong>birthday</strong>: <em>required (date-only)</em><p>No time, only a date of format YYYY-MM-DD</p></li><li><strong>departmentId</strong>: <em>(number)</em></li><li><strong>schoolYear</strong>: <em>(one of 1, 2, 3, 4, 5, 6, 7, 8)</em><p>A INSA Lyon school year</p></li><li><strong>telephone</strong>: <em>(string)</em></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>countryId</strong>: <em>required (number)</em></li></ul></li><li><strong>positions</strong>: <em>required (array of CoreRequests.PositionRequest)</em><p>The member&#39;s position(s) within ETIC INSA Technologies. Can have from 1 to N items.</p><p><strong>Items</strong>: PositionRequest</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>year</strong>: <em>required (number)</em></li><li><strong>isBoard</strong>: <em>required (boolean)</em></li></ul></div></li></ul></div><div class="tab-pane" id="core_member_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>The CoreTypes.Member was correctly added</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
   "id": 2,
   "label": "H"
 }</code></pre></div></li><li><strong>email</strong>: <em>required (string)</em></li><li><strong>birthday</strong>: <em>required (date-only)</em><p>No time, only a date of format YYYY-MM-DD</p></li><li><strong>department</strong>: <em>(object)</em><p>the ID of the member&#39;s school department</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em><p>A short acryonym for the department</p></li><li><strong>name</strong>: <em>required (string)</em><p>The full name of the department</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
@@ -447,20 +434,7 @@
 }</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Returned for any other error that is not handled</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
   "status": 500,
   "message": "Internal Service Error"
-}</code></pre></div></div><div class="tab-pane" id="core_member_me_get_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="core_member_me_put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/core</span>/member/me</h4></div><div class="modal-body"><div class="alert alert-info"><p>Updates the current connected user</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>OAuth2-0</b><p>Simplified OAuth2.0 authentication in which every request must containt a JWT token header</p></div><ul class="nav nav-tabs"><li class="active"><a href="#core_member_me_put_request" data-toggle="tab">Request</a></li><li><a href="#core_member_me_put_response" data-toggle="tab">Response</a></li><li><a href="#core_member_me_put_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="core_member_me_put_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>username</strong>: <em>required (string)</em></li><li><strong>password</strong>: <em>(string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>genderId</strong>: <em>required (number)</em></li><li><strong>email</strong>: <em>required (string)</em></li><li><strong>birthday</strong>: <em>required (date-only)</em><p>No time, only a date of format YYYY-MM-DD</p></li><li><strong>departmentId</strong>: <em>(number)</em></li><li><strong>schoolYear</strong>: <em>(one of 1, 2, 3, 4, 5, 6, 7, 8)</em><p>A INSA Lyon school year</p></li><li><strong>telephone</strong>: <em>(string)</em></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
-  "id": 5,
-  "label": "France"
-}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
-  "id": 1,
-  "line1": "13 rue du renard",
-  "line2": "appt 421",
-  "city": "Villeurbanne",
-  "postalCode": "69100",
-  "country": {
-    "id": 5,
-    "label": "France"
-  }
-}</code></pre></div></li><li><strong>positions</strong>: <em>required (array of CoreRequests.PositionRequest)</em><p>The member&#39;s position(s) within ETIC INSA Technologies. Can have from 1 to N items.</p><p><strong>Items</strong>: PositionRequest</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>year</strong>: <em>required (number)</em></li><li><strong>isBoard</strong>: <em>required (boolean)</em></li></ul></div></li></ul></div><div class="tab-pane" id="core_member_me_put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The CoreTypes.Member was successfully updated added</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+}</code></pre></div></div><div class="tab-pane" id="core_member_me_get_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="core_member_me_put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/core</span>/member/me</h4></div><div class="modal-body"><div class="alert alert-info"><p>Updates the current connected user</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>OAuth2-0</b><p>Simplified OAuth2.0 authentication in which every request must containt a JWT token header</p></div><ul class="nav nav-tabs"><li class="active"><a href="#core_member_me_put_request" data-toggle="tab">Request</a></li><li><a href="#core_member_me_put_response" data-toggle="tab">Response</a></li><li><a href="#core_member_me_put_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="core_member_me_put_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>username</strong>: <em>required (string)</em></li><li><strong>password</strong>: <em>(string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>genderId</strong>: <em>required (number)</em></li><li><strong>email</strong>: <em>required (string)</em></li><li><strong>birthday</strong>: <em>required (date-only)</em><p>No time, only a date of format YYYY-MM-DD</p></li><li><strong>departmentId</strong>: <em>(number)</em></li><li><strong>schoolYear</strong>: <em>(one of 1, 2, 3, 4, 5, 6, 7, 8)</em><p>A INSA Lyon school year</p></li><li><strong>telephone</strong>: <em>(string)</em></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>countryId</strong>: <em>required (number)</em></li></ul></li><li><strong>positions</strong>: <em>required (array of CoreRequests.PositionRequest)</em><p>The member&#39;s position(s) within ETIC INSA Technologies. Can have from 1 to N items.</p><p><strong>Items</strong>: PositionRequest</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>year</strong>: <em>required (number)</em></li><li><strong>isBoard</strong>: <em>required (boolean)</em></li></ul></div></li></ul></div><div class="tab-pane" id="core_member_me_put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The CoreTypes.Member was successfully updated added</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
   "id": 2,
   "label": "H"
 }</code></pre></div></li><li><strong>email</strong>: <em>required (string)</em></li><li><strong>birthday</strong>: <em>required (date-only)</em><p>No time, only a date of format YYYY-MM-DD</p></li><li><strong>department</strong>: <em>(object)</em><p>the ID of the member&#39;s school department</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em><p>A short acryonym for the department</p></li><li><strong>name</strong>: <em>required (string)</em><p>The full name of the department</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
@@ -628,20 +602,7 @@
 }</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Returned for any other error that is not handled</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
   "status": 500,
   "message": "Internal Service Error"
-}</code></pre></div></div><div class="tab-pane" id="core_member__id__get_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="core_member__id__put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/core</span>/member/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Updates an CoreTypes.Member and returns it</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>OAuth2-0</b><p>Simplified OAuth2.0 authentication in which every request must containt a JWT token header</p></div><ul class="nav nav-tabs"><li class="active"><a href="#core_member__id__put_request" data-toggle="tab">Request</a></li><li><a href="#core_member__id__put_response" data-toggle="tab">Response</a></li><li><a href="#core_member__id__put_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="core_member__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>username</strong>: <em>required (string)</em></li><li><strong>password</strong>: <em>(string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>genderId</strong>: <em>required (number)</em></li><li><strong>email</strong>: <em>required (string)</em></li><li><strong>birthday</strong>: <em>required (date-only)</em><p>No time, only a date of format YYYY-MM-DD</p></li><li><strong>departmentId</strong>: <em>(number)</em></li><li><strong>schoolYear</strong>: <em>(one of 1, 2, 3, 4, 5, 6, 7, 8)</em><p>A INSA Lyon school year</p></li><li><strong>telephone</strong>: <em>(string)</em></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
-  "id": 5,
-  "label": "France"
-}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
-  "id": 1,
-  "line1": "13 rue du renard",
-  "line2": "appt 421",
-  "city": "Villeurbanne",
-  "postalCode": "69100",
-  "country": {
-    "id": 5,
-    "label": "France"
-  }
-}</code></pre></div></li><li><strong>positions</strong>: <em>required (array of CoreRequests.PositionRequest)</em><p>The member&#39;s position(s) within ETIC INSA Technologies. Can have from 1 to N items.</p><p><strong>Items</strong>: PositionRequest</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>year</strong>: <em>required (number)</em></li><li><strong>isBoard</strong>: <em>required (boolean)</em></li></ul></div></li></ul></div><div class="tab-pane" id="core_member__id__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The CoreTypes.Member was successfully updated added</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+}</code></pre></div></div><div class="tab-pane" id="core_member__id__get_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="core_member__id__put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/core</span>/member/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Updates an CoreTypes.Member and returns it</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>OAuth2-0</b><p>Simplified OAuth2.0 authentication in which every request must containt a JWT token header</p></div><ul class="nav nav-tabs"><li class="active"><a href="#core_member__id__put_request" data-toggle="tab">Request</a></li><li><a href="#core_member__id__put_response" data-toggle="tab">Response</a></li><li><a href="#core_member__id__put_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="core_member__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>username</strong>: <em>required (string)</em></li><li><strong>password</strong>: <em>(string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>genderId</strong>: <em>required (number)</em></li><li><strong>email</strong>: <em>required (string)</em></li><li><strong>birthday</strong>: <em>required (date-only)</em><p>No time, only a date of format YYYY-MM-DD</p></li><li><strong>departmentId</strong>: <em>(number)</em></li><li><strong>schoolYear</strong>: <em>(one of 1, 2, 3, 4, 5, 6, 7, 8)</em><p>A INSA Lyon school year</p></li><li><strong>telephone</strong>: <em>(string)</em></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>countryId</strong>: <em>required (number)</em></li></ul></li><li><strong>positions</strong>: <em>required (array of CoreRequests.PositionRequest)</em><p>The member&#39;s position(s) within ETIC INSA Technologies. Can have from 1 to N items.</p><p><strong>Items</strong>: PositionRequest</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>year</strong>: <em>required (number)</em></li><li><strong>isBoard</strong>: <em>required (boolean)</em></li></ul></div></li></ul></div><div class="tab-pane" id="core_member__id__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The CoreTypes.Member was successfully updated added</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
   "id": 2,
   "label": "H"
 }</code></pre></div></li><li><strong>email</strong>: <em>required (string)</em></li><li><strong>birthday</strong>: <em>required (date-only)</em><p>No time, only a date of format YYYY-MM-DD</p></li><li><strong>department</strong>: <em>(object)</em><p>the ID of the member&#39;s school department</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em><p>A short acryonym for the department</p></li><li><strong>name</strong>: <em>required (string)</em><p>The full name of the department</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
@@ -976,20 +937,7 @@
 }</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Returned for any other error that is not handled</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
   "status": 500,
   "message": "Internal Service Error"
-}</code></pre></div></div><div class="tab-pane" id="ua_firm_get_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="ua_firm_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/ua</span>/firm</h4></div><div class="modal-body"><div class="alert alert-info"><p>Creates an UATypes.Firm and returns it</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>OAuth2-0</b><p>Simplified OAuth2.0 authentication in which every request must containt a JWT token header</p></div><ul class="nav nav-tabs"><li class="active"><a href="#ua_firm_post_request" data-toggle="tab">Request</a></li><li><a href="#ua_firm_post_response" data-toggle="tab">Response</a></li><li><a href="#ua_firm_post_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="ua_firm_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>siret</strong>: <em>(string - maxLength: 20)</em><p>A company&#39;s SIRET</p></li><li><strong>name</strong>: <em>required (string)</em></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
-  "id": 5,
-  "label": "France"
-}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
-  "id": 1,
-  "line1": "13 rue du renard",
-  "line2": "appt 421",
-  "city": "Villeurbanne",
-  "postalCode": "69100",
-  "country": {
-    "id": 5,
-    "label": "France"
-  }
-}</code></pre></div></li><li><strong>typeId</strong>: <em>required (number)</em><p>The ID of the firm&#39;s type</p></li></ul></div><div class="tab-pane" id="ua_firm_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>The UATypes.Firm was correctly added</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>siret</strong>: <em>(string - maxLength: 20)</em><p>A company&#39;s SIRET</p></li><li><strong>name</strong>: <em>required (string)</em><p>The company&#39;s name, or the persons name if it is a physical person</p></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+}</code></pre></div></div><div class="tab-pane" id="ua_firm_get_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="ua_firm_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/ua</span>/firm</h4></div><div class="modal-body"><div class="alert alert-info"><p>Creates an UATypes.Firm and returns it</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>OAuth2-0</b><p>Simplified OAuth2.0 authentication in which every request must containt a JWT token header</p></div><ul class="nav nav-tabs"><li class="active"><a href="#ua_firm_post_request" data-toggle="tab">Request</a></li><li><a href="#ua_firm_post_response" data-toggle="tab">Response</a></li><li><a href="#ua_firm_post_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="ua_firm_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>siret</strong>: <em>(string - maxLength: 20)</em><p>A company&#39;s SIRET</p></li><li><strong>name</strong>: <em>required (string)</em></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>countryId</strong>: <em>required (number)</em></li></ul></li><li><strong>typeId</strong>: <em>required (number)</em><p>The ID of the firm&#39;s type</p></li></ul></div><div class="tab-pane" id="ua_firm_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>The UATypes.Firm was correctly added</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>siret</strong>: <em>(string - maxLength: 20)</em><p>A company&#39;s SIRET</p></li><li><strong>name</strong>: <em>required (string)</em><p>The company&#39;s name, or the persons name if it is a physical person</p></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
   "id": 5,
   "label": "France"
 }</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
@@ -1083,20 +1031,7 @@
 }</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Returned for any other error that is not handled</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
   "status": 500,
   "message": "Internal Service Error"
-}</code></pre></div></div><div class="tab-pane" id="ua_firm__id__get_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="ua_firm__id__put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/ua</span>/firm/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Updates an UATypes.Firm and returns it</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>OAuth2-0</b><p>Simplified OAuth2.0 authentication in which every request must containt a JWT token header</p></div><ul class="nav nav-tabs"><li class="active"><a href="#ua_firm__id__put_request" data-toggle="tab">Request</a></li><li><a href="#ua_firm__id__put_response" data-toggle="tab">Response</a></li><li><a href="#ua_firm__id__put_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="ua_firm__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>siret</strong>: <em>(string - maxLength: 20)</em><p>A company&#39;s SIRET</p></li><li><strong>name</strong>: <em>required (string)</em></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
-  "id": 5,
-  "label": "France"
-}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
-  "id": 1,
-  "line1": "13 rue du renard",
-  "line2": "appt 421",
-  "city": "Villeurbanne",
-  "postalCode": "69100",
-  "country": {
-    "id": 5,
-    "label": "France"
-  }
-}</code></pre></div></li><li><strong>typeId</strong>: <em>required (number)</em><p>The ID of the firm&#39;s type</p></li></ul></div><div class="tab-pane" id="ua_firm__id__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The UATypes.Firm was successfully updated added</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>siret</strong>: <em>(string - maxLength: 20)</em><p>A company&#39;s SIRET</p></li><li><strong>name</strong>: <em>required (string)</em><p>The company&#39;s name, or the persons name if it is a physical person</p></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+}</code></pre></div></div><div class="tab-pane" id="ua_firm__id__get_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="ua_firm__id__put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/ua</span>/firm/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Updates an UATypes.Firm and returns it</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>OAuth2-0</b><p>Simplified OAuth2.0 authentication in which every request must containt a JWT token header</p></div><ul class="nav nav-tabs"><li class="active"><a href="#ua_firm__id__put_request" data-toggle="tab">Request</a></li><li><a href="#ua_firm__id__put_response" data-toggle="tab">Response</a></li><li><a href="#ua_firm__id__put_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="ua_firm__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>siret</strong>: <em>(string - maxLength: 20)</em><p>A company&#39;s SIRET</p></li><li><strong>name</strong>: <em>required (string)</em></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>countryId</strong>: <em>required (number)</em></li></ul></li><li><strong>typeId</strong>: <em>required (number)</em><p>The ID of the firm&#39;s type</p></li></ul></div><div class="tab-pane" id="ua_firm__id__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The UATypes.Firm was successfully updated added</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>siret</strong>: <em>(string - maxLength: 20)</em><p>A company&#39;s SIRET</p></li><li><strong>name</strong>: <em>required (string)</em><p>The company&#39;s name, or the persons name if it is a physical person</p></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
   "id": 5,
   "label": "France"
 }</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
@@ -2553,4 +2488,825 @@
 }</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Returned for any other error that is not handled</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
   "status": 500,
   "message": "Internal Service Error"
-}</code></pre></div></div><div class="tab-pane" id="ua_study__studyid__document__documentid__get_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#auth">/auth</a></li><li><a href="#core">/core</a></li><li><a href="#ua">/ua</a></li></ul></div></div></div></div></body></html>
+}</code></pre></div></div><div class="tab-pane" id="ua_study__studyid__document__documentid__get_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="treso" class="panel-title">/treso</h3></div><div class="panel-body"><div class="top-resource-description"><p>Tréso endpoints</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_treso_facture_types"><span class="parent">/treso</span>/facture-types</a> <span class="methods"><a href="#treso_facture_types_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_treso_facture_types" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#treso_facture_types_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Gets all of the TresoTypes.FactureType</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="treso_facture_types_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/treso</span>/facture-types</h4></div><div class="modal-body"><div class="alert alert-info"><p>Gets all of the TresoTypes.FactureType</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>OAuth2-0</b><p>Simplified OAuth2.0 authentication in which every request must containt a JWT token header</p></div><ul class="nav nav-tabs"><li class="active"><a href="#treso_facture_types_get_response" data-toggle="tab">Response</a></li><li><a href="#treso_facture_types_get_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="treso_facture_types_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: array of string</p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Returned when the request isn&#39;t valid, or in the case of a get by id, the item is not found</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Returned when user is not authenticated or didn&#39;t send token</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Returned when user is not allowed to access this resource</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Returned for any other error that is not handled</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div></div><div class="tab-pane" id="treso_facture_types_get_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_treso_facture"><span class="parent">/treso</span>/facture</a> <span class="methods"><a href="#treso_facture_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#treso_facture_post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_treso_facture" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#treso_facture_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Gets a page of TresoTypes.Facture. The response is under the form { "content": [ITEMS], "meta": {META} }</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#treso_facture_post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Creates an TresoTypes.Facture and returns it</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="treso_facture_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/treso</span>/facture</h4></div><div class="modal-body"><div class="alert alert-info"><p>Gets a page of TresoTypes.Facture. The response is under the form { "content": [ITEMS], "meta": {META} }</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>OAuth2-0</b><p>Simplified OAuth2.0 authentication in which every request must containt a JWT token header</p></div><ul class="nav nav-tabs"><li class="active"><a href="#treso_facture_get_request" data-toggle="tab">Request</a></li><li><a href="#treso_facture_get_response" data-toggle="tab">Response</a></li><li><a href="#treso_facture_get_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="treso_facture_get_request"><h3>Query Parameters</h3><ul><li><strong>search</strong>: <em>(string)</em><p>Allows a search where any information of each item must match the searc term</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>thomas</code></pre></div></li><li><strong>orderBy</strong>: <em>(string)</em><p>The field by which to order by</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>name</code></pre></div></li><li><strong>order</strong>: <em>(one of desc, asc - default: asc)</em><p>Order</p></li><li><strong>pageNumber</strong>: <em>(integer - default: 0)</em><p>The number of the page that is needed</p></li><li><strong>pageSize</strong>: <em>(integer - default: 25 - minimum: 10 - maximum: 100)</em><p>Number of elements per page to recover</p></li></ul></div><div class="tab-pane" id="treso_facture_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>content</strong>: <em>required (array of object)</em><p><strong>Items</strong>: Facture</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em><p>ID technique généré pour la facture</p></li><li><strong>numero</strong>: <em>required (string - minLength: 5 - maxLength: 32)</em><p>Un string saisie par les utilisateurs sans valeur technique</p></li><li><strong>fullAddress</strong>: <em>required (object)</em><p>L&#39;addresse qui apparait sur la facture. Par défaut l&#39;addresse de l&#39;entreprise</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 5,
+  "label": "France"
+}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "line1": "13 rue du renard",
+  "line2": "appt 421",
+  "city": "Villeurbanne",
+  "postalCode": "69100",
+  "country": {
+    "id": 5,
+    "label": "France"
+  }
+}</code></pre></div></li><li><strong>clientName</strong>: <em>required (string)</em><p>Le nom du clientName. Par défaut le nom de l&#39;entreprise</p></li><li><strong>contactName</strong>: <em>required (string)</em><p>Nom de la personne à qui est addressée la facture. Par défaut le nom du contact principal du firm.</p></li><li><strong>contactEmail</strong>: <em>required (string)</em><p>Nom de la personne à qui est addressée la facture. Par défaut l&#39;email du contact principal du firm.</p></li><li><strong>study</strong>: <em>required (object)</em><p>L&#39;étude concernée par la facture (contenant les informations comme l&#39;entreprise, le sujet de la facture, ...)</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>name</strong>: <em>required (string)</em></li><li><strong>description</strong>: <em>required (string)</em></li><li><strong>field</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "Web"
+}</code></pre></div></li><li><strong>status</strong>: <em>required (object)</em><p>A status of a specific study</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "label": "En cours"
+}</code></pre></div></li><li><strong>provenance</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 4,
+  "label": "Phoning"
+}</code></pre></div></li><li><strong>confidential</strong>: <em>required (boolean)</em></li><li><strong>signDate</strong>: <em>required (date-only)</em></li><li><strong>endDate</strong>: <em>(date-only)</em></li><li><strong>managementFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>realizationFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>rebilledFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>ecoparticipationFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>outsourcingFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>archivedDate</strong>: <em>(date-only)</em><p>If the project is archived, this date speciifies when that happened. If not, will be either null or not present.</p></li><li><strong>firm</strong>: <em>required (object)</em><p>A firm / company that ETIC is associated with (clients, partners, etc)</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>siret</strong>: <em>(string - maxLength: 20)</em><p>A company&#39;s SIRET</p></li><li><strong>name</strong>: <em>required (string)</em><p>The company&#39;s name, or the persons name if it is a physical person</p></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 5,
+  "label": "France"
+}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "line1": "13 rue du renard",
+  "line2": "appt 421",
+  "city": "Villeurbanne",
+  "postalCode": "69100",
+  "country": {
+    "id": 5,
+    "label": "France"
+  }
+}</code></pre></div></li><li><strong>type</strong>: <em>required (object)</em><p>A type of firm</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "label": "PME/PMI"
+}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "siret": "544683216546",
+  "name": "Cool Company Inc.",
+  "address": {
+    "id": 1,
+    "line1": "13 rue du renard",
+    "line2": "appt 421",
+    "city": "Villeurbanne",
+    "postalCode": "69100",
+    "country": {
+      "id": 5,
+      "label": "France"
+    }
+  },
+  "type": {
+    "id": 1,
+    "label": "PME/PMI"
+  }
+}</code></pre></div></li><li><strong>contacts</strong>: <em>required (array of UATypes.ContactShort - minItems: 1)</em><p>An array containing all contacts associated with this project</p><p><strong>Items</strong>: ContactShort</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li><li><strong>email</strong>: <em>required (string)</em></li><li><strong>telephone</strong>: <em>(string)</em><p>A contacts home or work phone number</p></li><li><strong>cellphone</strong>: <em>(string)</em><p>A contacts cellphone number</p></li><li><strong>position</strong>: <em>(string)</em><p>The contacts position / job within his firm</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "firstName": "Thomas",
+  "lastName": "Edison",
+  "gender": {
+    "id": 2,
+    "label": "F"
+  },
+  "email": "thomas.edison@nomail.com",
+  "telephone": "0033575489521",
+  "cellphone": "0033675445501",
+  "position": "Directeur de commerce"
+}</code></pre></div></div></li><li><strong>leaders</strong>: <em>required (array of CoreTypes.MemberShort - minItems: 1 - maxItems: 3)</em><p>An array containing the projet leads within ETIC INSA Technologies</p><p><strong>Items</strong>: MemberShort</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></div></li><li><strong>consultants</strong>: <em>required (array of CoreTypes.MemberShort - minItems: 1)</em><p>An array containing all members working as consultants for the project</p><p><strong>Items</strong>: MemberShort</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></div></li><li><strong>qualityManagers</strong>: <em>required (array of CoreTypes.MemberShort - minItems: 1 - maxItems: 3)</em><p>An array containing one or two members of ETIC who ensure quality control</p><p><strong>Items</strong>: MemberShort</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "name": "Création d&#39;un site internet",
+  "description": "Le site web est un magasin en ligne",
+  "field": {
+    "id": 7,
+    "label": "Web"
+  },
+  "status": {
+    "id": 1,
+    "label": "En cours"
+  },
+  "provenance": {
+    "id": 1,
+    "label": "Phoning"
+  },
+  "confidential": true,
+  "signDate": "2018-11-20",
+  "endDate": "2019-12-01",
+  "managementFee": 112,
+  "realizationFee": 174,
+  "rebilledFee": 25,
+  "ecoparticipationFee": 100,
+  "outsourcingFee": 45,
+  "archivedDate": "2020-01-02",
+  "firm": {
+    "id": 1,
+    "siret": "544683216546",
+    "name": "Cool Company Inc.",
+    "address": {
+      "id": 1,
+      "line1": "13 rue du renard",
+      "line2": "appt 421",
+      "city": "Villeurbanne",
+      "postalCode": "69100",
+      "country": {
+        "id": 5,
+        "label": "France"
+      }
+    },
+    "type": {
+      "id": 1,
+      "label": "PME/PMI"
+    }
+  },
+  "contacts": [
+    {
+      "id": 1,
+      "firstName": "Thomas",
+      "lastName": "Edison",
+      "gender": {
+        "id": 2,
+        "label": "F"
+      },
+      "email": "thomas.edison@nomail.com",
+      "telephone": "0033575489521",
+      "cellphone": "0033675445501",
+      "position": "Directeur de commerce"
+    }
+  ],
+  "leaders": [
+    {
+      "id": 1,
+      "username": "clion",
+      "firstName": "charlène",
+      "lastName": "lion",
+      "gender": {
+        "id": 2,
+        "label": "F"
+      }
+    }
+  ],
+  "consultants": [
+    {
+      "id": 1,
+      "username": "clion",
+      "firstName": "charlène",
+      "lastName": "lion",
+      "gender": {
+        "id": 2,
+        "label": "F"
+      }
+    }
+  ],
+  "qualityManagers": [
+    {
+      "id": 1,
+      "username": "clion",
+      "firstName": "charlène",
+      "lastName": "lion",
+      "gender": {
+        "id": 2,
+        "label": "F"
+      }
+    }
+  ]
+}</code></pre></div></li><li><strong>type</strong>: <em>required (one of proforma, acompte, intermediaire, solde)</em><p>Type d&#39;une facture choisie par l&#39;utilisateur. Nom des types: Pro-forma, Acompte, Intermédiaire, Solde.</p></li><li><strong>amountDescription</strong>: <em>required (string - minLength: 1 - maxLength: 2048)</em><p>L&#39;objet de la facture saisie par les utilisateurs (copié d&#39;un document existant généralement)</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>D’un montant de quatre mille quatre-vingt euros toutes taxes comprises (4080€ TTC), correspondant à la réalisation de 13 JEH</code></pre></div></li><li><strong>subject</strong>: <em>required (string)</em><p>Ce qui est facturé. Par défaut le nom du study</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>réalisation d’une plateforme d’optimisation logistique</code></pre></div></li><li><strong>agreementSignDate</strong>: <em>required (date-only)</em><p>date à laquelle la convention a été signée. Par défaut Study.signDate</p></li><li><strong>amountHT</strong>: <em>required (number)</em><p>Montant hors taxe facturé</p></li><li><strong>taxPercentage</strong>: <em>required (number - default: 20)</em><p>Le pourcentage de TVA à appliquer (nombre flottant)</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>20.5</code></pre></div></li><li><strong>amountTTC</strong>: <em>required (number)</em><p>Calculated from the amountHT and taxPercentage on the fly. This should not be stored</p></li><li><strong>dueDate</strong>: <em>required (date-only)</em><p>Date d&#39;écheance de la facture</p></li><li><strong>additionalInformation</strong>: <em>required (string)</em><p>Infos additionnelles saisies par n&#39;importe qui qui a le droit d&#39;éditer</p></li><li><strong>createdDate</strong>: <em>required (datetime)</em><p>La date de création</p></li><li><strong>createdBy</strong>: <em>required (object)</em><p>La personne qui a créée la demande, en général le chef d&#39;affaires</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></li><li><strong>validatedByUa</strong>: <em>required (boolean)</em><p>Si la demande est validé par les UA</p></li><li><strong>validatedByUaDate</strong>: <em>required (datetime)</em><p>La date à laquelle la demande a été validée par les UA</p></li><li><strong>validatedByUaMember</strong>: <em>required (object)</em><p>La personne de UA qui a validé la demande</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></li><li><strong>validatedByPerf</strong>: <em>required (boolean)</em><p>Si la demande est validé par la perf</p></li><li><strong>validatedByPerfDate</strong>: <em>required (datetime)</em><p>La date à laquelle la demande a été validée par la perf</p></li><li><strong>validatedByPerfMember</strong>: <em>required (object)</em><p>La personne de perf qui a validé la demande</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></li></ul></div></li><li><strong>meta</strong>: <em>required (object)</em><p>The page metadata. Note that when there are 2 pages, it means that the pages 0 and 1 exist, but not 2 (i.e. the page number is an index).</p><ul><li><strong>page</strong>: <em>required (integer)</em></li><li><strong>totalPages</strong>: <em>required (integer)</em></li><li><strong>totalItems</strong>: <em>required (integer)</em></li><li><strong>itemsPerPage</strong>: <em>required (integer)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "page": 0,
+  "totalPages": 2,
+  "totalItems": 40,
+  "itemsPerPage": 25
+}</code></pre></div></li></ul><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Returned when the request isn&#39;t valid, or in the case of a get by id, the item is not found</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Returned when user is not authenticated or didn&#39;t send token</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Returned when user is not allowed to access this resource</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Returned for any other error that is not handled</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div></div><div class="tab-pane" id="treso_facture_get_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="treso_facture_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/treso</span>/facture</h4></div><div class="modal-body"><div class="alert alert-info"><p>Creates an TresoTypes.Facture and returns it</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>OAuth2-0</b><p>Simplified OAuth2.0 authentication in which every request must containt a JWT token header</p></div><ul class="nav nav-tabs"><li class="active"><a href="#treso_facture_post_request" data-toggle="tab">Request</a></li><li><a href="#treso_facture_post_response" data-toggle="tab">Response</a></li><li><a href="#treso_facture_post_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="treso_facture_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>numero</strong>: <em>(string - minLength: 5 - maxLength: 32)</em><p>Un string saisie par les utilisateurs sans valeur technique</p></li><li><strong>fullAddress</strong>: <em>(object)</em><p>L&#39;addresse qui apparait sur la facture. Par défaut l&#39;addresse de l&#39;entreprise</p><ul><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>countryId</strong>: <em>required (number)</em></li></ul></li><li><strong>clientName</strong>: <em>(string)</em><p>Le nom du clientName. Par défaut le nom de l&#39;entreprise</p></li><li><strong>contactName</strong>: <em>(string)</em><p>Nom de la personne à qui est addressée la facture. Par défaut le nom du contact principal du firm.</p></li><li><strong>contactEmail</strong>: <em>(string)</em><p>Nom de la personne à qui est addressée la facture. Par défaut l&#39;email du contact principal du firm.</p></li><li><strong>studyId</strong>: <em>required (number)</em><p>L&#39;étude concernée par la facture (contenant les informations comme l&#39;entreprise, le sujet de la facture, ...)</p></li><li><strong>type</strong>: <em>required (one of proforma, acompte, intermediaire, solde)</em><p>Type d&#39;une facture choisie par l&#39;utilisateur. Nom des types: Pro-forma, Acompte, Intermédiaire, Solde.</p></li><li><strong>amountDescription</strong>: <em>(string - minLength: 1 - maxLength: 2048)</em><p>L&#39;objet de la facture saisie par les utilisateurs (copié d&#39;un document existant généralement)</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>D’un montant de quatre mille quatre-vingt euros toutes taxes comprises (4080€ TTC), correspondant à la réalisation de 13 JEH</code></pre></div></li><li><strong>subject</strong>: <em>(string)</em><p>Ce qui est facturé. Par défaut le nom du study</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>réalisation d’une plateforme d’optimisation logistique</code></pre></div></li><li><strong>agreementSignDate</strong>: <em>(date-only)</em><p>date à laquelle la convention a été signée. Par défaut Study.signDate</p></li><li><strong>amountHT</strong>: <em>(number)</em><p>Montant hors taxe facturé</p></li><li><strong>taxPercentage</strong>: <em>(number - default: 20)</em><p>Le pourcentage de TVA à appliquer (nombre flottant)</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>20.5</code></pre></div></li><li><strong>dueDate</strong>: <em>(date-only)</em><p>Date d&#39;écheance de la facture</p></li><li><strong>additionalInformation</strong>: <em>(string)</em><p>Infos additionnelles saisies par n&#39;importe qui qui a le droit d&#39;éditer</p></li><li><strong>createdDate</strong>: <em>required (datetime)</em><p>La date de création</p></li><li><strong>createdById</strong>: <em>required (number)</em><p>La personne qui a créée la demande, en général le chef d&#39;affaires</p></li><li><strong>validatedByUa</strong>: <em>(boolean - default: false)</em><p>Si la demande est validé par les UA</p></li><li><strong>validatedByUaDate</strong>: <em>(datetime)</em><p>La date à laquelle la demande a été validée par les UA</p></li><li><strong>validatedByUaMemberId</strong>: <em>(number)</em><p>La personne de UA qui a validé la demande</p></li><li><strong>validatedByPerf</strong>: <em>(boolean - default: false)</em><p>Si la demande est validé par la perf</p></li><li><strong>validatedByPerfDate</strong>: <em>(datetime)</em><p>La date à laquelle la demande a été validée par la perf</p></li><li><strong>validatedByPerfMemberId</strong>: <em>(number)</em><p>La personne de perf qui a validé la demande</p></li></ul></div><div class="tab-pane" id="treso_facture_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>The TresoTypes.Facture was correctly added</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>required (number)</em><p>ID technique généré pour la facture</p></li><li><strong>numero</strong>: <em>required (string - minLength: 5 - maxLength: 32)</em><p>Un string saisie par les utilisateurs sans valeur technique</p></li><li><strong>fullAddress</strong>: <em>required (object)</em><p>L&#39;addresse qui apparait sur la facture. Par défaut l&#39;addresse de l&#39;entreprise</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 5,
+  "label": "France"
+}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "line1": "13 rue du renard",
+  "line2": "appt 421",
+  "city": "Villeurbanne",
+  "postalCode": "69100",
+  "country": {
+    "id": 5,
+    "label": "France"
+  }
+}</code></pre></div></li><li><strong>clientName</strong>: <em>required (string)</em><p>Le nom du clientName. Par défaut le nom de l&#39;entreprise</p></li><li><strong>contactName</strong>: <em>required (string)</em><p>Nom de la personne à qui est addressée la facture. Par défaut le nom du contact principal du firm.</p></li><li><strong>contactEmail</strong>: <em>required (string)</em><p>Nom de la personne à qui est addressée la facture. Par défaut l&#39;email du contact principal du firm.</p></li><li><strong>study</strong>: <em>required (object)</em><p>L&#39;étude concernée par la facture (contenant les informations comme l&#39;entreprise, le sujet de la facture, ...)</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>name</strong>: <em>required (string)</em></li><li><strong>description</strong>: <em>required (string)</em></li><li><strong>field</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "Web"
+}</code></pre></div></li><li><strong>status</strong>: <em>required (object)</em><p>A status of a specific study</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "label": "En cours"
+}</code></pre></div></li><li><strong>provenance</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 4,
+  "label": "Phoning"
+}</code></pre></div></li><li><strong>confidential</strong>: <em>required (boolean)</em></li><li><strong>signDate</strong>: <em>required (date-only)</em></li><li><strong>endDate</strong>: <em>(date-only)</em></li><li><strong>managementFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>realizationFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>rebilledFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>ecoparticipationFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>outsourcingFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>archivedDate</strong>: <em>(date-only)</em><p>If the project is archived, this date speciifies when that happened. If not, will be either null or not present.</p></li><li><strong>firm</strong>: <em>required (object)</em><p>A firm / company that ETIC is associated with (clients, partners, etc)</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>siret</strong>: <em>(string - maxLength: 20)</em><p>A company&#39;s SIRET</p></li><li><strong>name</strong>: <em>required (string)</em><p>The company&#39;s name, or the persons name if it is a physical person</p></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 5,
+  "label": "France"
+}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "line1": "13 rue du renard",
+  "line2": "appt 421",
+  "city": "Villeurbanne",
+  "postalCode": "69100",
+  "country": {
+    "id": 5,
+    "label": "France"
+  }
+}</code></pre></div></li><li><strong>type</strong>: <em>required (object)</em><p>A type of firm</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "label": "PME/PMI"
+}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "siret": "544683216546",
+  "name": "Cool Company Inc.",
+  "address": {
+    "id": 1,
+    "line1": "13 rue du renard",
+    "line2": "appt 421",
+    "city": "Villeurbanne",
+    "postalCode": "69100",
+    "country": {
+      "id": 5,
+      "label": "France"
+    }
+  },
+  "type": {
+    "id": 1,
+    "label": "PME/PMI"
+  }
+}</code></pre></div></li><li><strong>contacts</strong>: <em>required (array of UATypes.ContactShort - minItems: 1)</em><p>An array containing all contacts associated with this project</p><p><strong>Items</strong>: ContactShort</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li><li><strong>email</strong>: <em>required (string)</em></li><li><strong>telephone</strong>: <em>(string)</em><p>A contacts home or work phone number</p></li><li><strong>cellphone</strong>: <em>(string)</em><p>A contacts cellphone number</p></li><li><strong>position</strong>: <em>(string)</em><p>The contacts position / job within his firm</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "firstName": "Thomas",
+  "lastName": "Edison",
+  "gender": {
+    "id": 2,
+    "label": "F"
+  },
+  "email": "thomas.edison@nomail.com",
+  "telephone": "0033575489521",
+  "cellphone": "0033675445501",
+  "position": "Directeur de commerce"
+}</code></pre></div></div></li><li><strong>leaders</strong>: <em>required (array of CoreTypes.MemberShort - minItems: 1 - maxItems: 3)</em><p>An array containing the projet leads within ETIC INSA Technologies</p><p><strong>Items</strong>: MemberShort</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></div></li><li><strong>consultants</strong>: <em>required (array of CoreTypes.MemberShort - minItems: 1)</em><p>An array containing all members working as consultants for the project</p><p><strong>Items</strong>: MemberShort</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></div></li><li><strong>qualityManagers</strong>: <em>required (array of CoreTypes.MemberShort - minItems: 1 - maxItems: 3)</em><p>An array containing one or two members of ETIC who ensure quality control</p><p><strong>Items</strong>: MemberShort</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "name": "Création d&#39;un site internet",
+  "description": "Le site web est un magasin en ligne",
+  "field": {
+    "id": 7,
+    "label": "Web"
+  },
+  "status": {
+    "id": 1,
+    "label": "En cours"
+  },
+  "provenance": {
+    "id": 1,
+    "label": "Phoning"
+  },
+  "confidential": true,
+  "signDate": "2018-11-20",
+  "endDate": "2019-12-01",
+  "managementFee": 112,
+  "realizationFee": 174,
+  "rebilledFee": 25,
+  "ecoparticipationFee": 100,
+  "outsourcingFee": 45,
+  "archivedDate": "2020-01-02",
+  "firm": {
+    "id": 1,
+    "siret": "544683216546",
+    "name": "Cool Company Inc.",
+    "address": {
+      "id": 1,
+      "line1": "13 rue du renard",
+      "line2": "appt 421",
+      "city": "Villeurbanne",
+      "postalCode": "69100",
+      "country": {
+        "id": 5,
+        "label": "France"
+      }
+    },
+    "type": {
+      "id": 1,
+      "label": "PME/PMI"
+    }
+  },
+  "contacts": [
+    {
+      "id": 1,
+      "firstName": "Thomas",
+      "lastName": "Edison",
+      "gender": {
+        "id": 2,
+        "label": "F"
+      },
+      "email": "thomas.edison@nomail.com",
+      "telephone": "0033575489521",
+      "cellphone": "0033675445501",
+      "position": "Directeur de commerce"
+    }
+  ],
+  "leaders": [
+    {
+      "id": 1,
+      "username": "clion",
+      "firstName": "charlène",
+      "lastName": "lion",
+      "gender": {
+        "id": 2,
+        "label": "F"
+      }
+    }
+  ],
+  "consultants": [
+    {
+      "id": 1,
+      "username": "clion",
+      "firstName": "charlène",
+      "lastName": "lion",
+      "gender": {
+        "id": 2,
+        "label": "F"
+      }
+    }
+  ],
+  "qualityManagers": [
+    {
+      "id": 1,
+      "username": "clion",
+      "firstName": "charlène",
+      "lastName": "lion",
+      "gender": {
+        "id": 2,
+        "label": "F"
+      }
+    }
+  ]
+}</code></pre></div></li><li><strong>type</strong>: <em>required (one of proforma, acompte, intermediaire, solde)</em><p>Type d&#39;une facture choisie par l&#39;utilisateur. Nom des types: Pro-forma, Acompte, Intermédiaire, Solde.</p></li><li><strong>amountDescription</strong>: <em>required (string - minLength: 1 - maxLength: 2048)</em><p>L&#39;objet de la facture saisie par les utilisateurs (copié d&#39;un document existant généralement)</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>D’un montant de quatre mille quatre-vingt euros toutes taxes comprises (4080€ TTC), correspondant à la réalisation de 13 JEH</code></pre></div></li><li><strong>subject</strong>: <em>required (string)</em><p>Ce qui est facturé. Par défaut le nom du study</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>réalisation d’une plateforme d’optimisation logistique</code></pre></div></li><li><strong>agreementSignDate</strong>: <em>required (date-only)</em><p>date à laquelle la convention a été signée. Par défaut Study.signDate</p></li><li><strong>amountHT</strong>: <em>required (number)</em><p>Montant hors taxe facturé</p></li><li><strong>taxPercentage</strong>: <em>required (number - default: 20)</em><p>Le pourcentage de TVA à appliquer (nombre flottant)</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>20.5</code></pre></div></li><li><strong>amountTTC</strong>: <em>required (number)</em><p>Calculated from the amountHT and taxPercentage on the fly. This should not be stored</p></li><li><strong>dueDate</strong>: <em>required (date-only)</em><p>Date d&#39;écheance de la facture</p></li><li><strong>additionalInformation</strong>: <em>required (string)</em><p>Infos additionnelles saisies par n&#39;importe qui qui a le droit d&#39;éditer</p></li><li><strong>createdDate</strong>: <em>required (datetime)</em><p>La date de création</p></li><li><strong>createdBy</strong>: <em>required (object)</em><p>La personne qui a créée la demande, en général le chef d&#39;affaires</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></li><li><strong>validatedByUa</strong>: <em>required (boolean)</em><p>Si la demande est validé par les UA</p></li><li><strong>validatedByUaDate</strong>: <em>required (datetime)</em><p>La date à laquelle la demande a été validée par les UA</p></li><li><strong>validatedByUaMember</strong>: <em>required (object)</em><p>La personne de UA qui a validé la demande</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></li><li><strong>validatedByPerf</strong>: <em>required (boolean)</em><p>Si la demande est validé par la perf</p></li><li><strong>validatedByPerfDate</strong>: <em>required (datetime)</em><p>La date à laquelle la demande a été validée par la perf</p></li><li><strong>validatedByPerfMember</strong>: <em>required (object)</em><p>La personne de perf qui a validé la demande</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></li></ul><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Returned when the request isn&#39;t valid, or in the case of a get by id, the item is not found</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Returned when user is not authenticated or didn&#39;t send token</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Returned when user is not allowed to access this resource</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Returned for any other error that is not handled</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div></div><div class="tab-pane" id="treso_facture_post_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_treso_facture__id_"><span class="parent">/treso</span>/facture/{id}</a> <span class="methods"><a href="#treso_facture__id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#treso_facture__id__put"><span class="badge badge_put">put <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#treso_facture__id__delete"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_treso_facture__id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#treso_facture__id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Gets a TresoTypes.Facture by ID</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#treso_facture__id__put'" class="list-group-item"><span class="badge badge_put">put <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Updates an TresoTypes.Facture and returns it</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#treso_facture__id__delete'" class="list-group-item"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Deletes an TresoTypes.Facture by ID</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="treso_facture__id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/treso</span>/facture/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Gets a TresoTypes.Facture by ID</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>OAuth2-0</b><p>Simplified OAuth2.0 authentication in which every request must containt a JWT token header</p></div><ul class="nav nav-tabs"><li class="active"><a href="#treso_facture__id__get_request" data-toggle="tab">Request</a></li><li><a href="#treso_facture__id__get_response" data-toggle="tab">Response</a></li><li><a href="#treso_facture__id__get_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="treso_facture__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="treso_facture__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>required (number)</em><p>ID technique généré pour la facture</p></li><li><strong>numero</strong>: <em>required (string - minLength: 5 - maxLength: 32)</em><p>Un string saisie par les utilisateurs sans valeur technique</p></li><li><strong>fullAddress</strong>: <em>required (object)</em><p>L&#39;addresse qui apparait sur la facture. Par défaut l&#39;addresse de l&#39;entreprise</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 5,
+  "label": "France"
+}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "line1": "13 rue du renard",
+  "line2": "appt 421",
+  "city": "Villeurbanne",
+  "postalCode": "69100",
+  "country": {
+    "id": 5,
+    "label": "France"
+  }
+}</code></pre></div></li><li><strong>clientName</strong>: <em>required (string)</em><p>Le nom du clientName. Par défaut le nom de l&#39;entreprise</p></li><li><strong>contactName</strong>: <em>required (string)</em><p>Nom de la personne à qui est addressée la facture. Par défaut le nom du contact principal du firm.</p></li><li><strong>contactEmail</strong>: <em>required (string)</em><p>Nom de la personne à qui est addressée la facture. Par défaut l&#39;email du contact principal du firm.</p></li><li><strong>study</strong>: <em>required (object)</em><p>L&#39;étude concernée par la facture (contenant les informations comme l&#39;entreprise, le sujet de la facture, ...)</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>name</strong>: <em>required (string)</em></li><li><strong>description</strong>: <em>required (string)</em></li><li><strong>field</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "Web"
+}</code></pre></div></li><li><strong>status</strong>: <em>required (object)</em><p>A status of a specific study</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "label": "En cours"
+}</code></pre></div></li><li><strong>provenance</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 4,
+  "label": "Phoning"
+}</code></pre></div></li><li><strong>confidential</strong>: <em>required (boolean)</em></li><li><strong>signDate</strong>: <em>required (date-only)</em></li><li><strong>endDate</strong>: <em>(date-only)</em></li><li><strong>managementFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>realizationFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>rebilledFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>ecoparticipationFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>outsourcingFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>archivedDate</strong>: <em>(date-only)</em><p>If the project is archived, this date speciifies when that happened. If not, will be either null or not present.</p></li><li><strong>firm</strong>: <em>required (object)</em><p>A firm / company that ETIC is associated with (clients, partners, etc)</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>siret</strong>: <em>(string - maxLength: 20)</em><p>A company&#39;s SIRET</p></li><li><strong>name</strong>: <em>required (string)</em><p>The company&#39;s name, or the persons name if it is a physical person</p></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 5,
+  "label": "France"
+}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "line1": "13 rue du renard",
+  "line2": "appt 421",
+  "city": "Villeurbanne",
+  "postalCode": "69100",
+  "country": {
+    "id": 5,
+    "label": "France"
+  }
+}</code></pre></div></li><li><strong>type</strong>: <em>required (object)</em><p>A type of firm</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "label": "PME/PMI"
+}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "siret": "544683216546",
+  "name": "Cool Company Inc.",
+  "address": {
+    "id": 1,
+    "line1": "13 rue du renard",
+    "line2": "appt 421",
+    "city": "Villeurbanne",
+    "postalCode": "69100",
+    "country": {
+      "id": 5,
+      "label": "France"
+    }
+  },
+  "type": {
+    "id": 1,
+    "label": "PME/PMI"
+  }
+}</code></pre></div></li><li><strong>contacts</strong>: <em>required (array of UATypes.ContactShort - minItems: 1)</em><p>An array containing all contacts associated with this project</p><p><strong>Items</strong>: ContactShort</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li><li><strong>email</strong>: <em>required (string)</em></li><li><strong>telephone</strong>: <em>(string)</em><p>A contacts home or work phone number</p></li><li><strong>cellphone</strong>: <em>(string)</em><p>A contacts cellphone number</p></li><li><strong>position</strong>: <em>(string)</em><p>The contacts position / job within his firm</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "firstName": "Thomas",
+  "lastName": "Edison",
+  "gender": {
+    "id": 2,
+    "label": "F"
+  },
+  "email": "thomas.edison@nomail.com",
+  "telephone": "0033575489521",
+  "cellphone": "0033675445501",
+  "position": "Directeur de commerce"
+}</code></pre></div></div></li><li><strong>leaders</strong>: <em>required (array of CoreTypes.MemberShort - minItems: 1 - maxItems: 3)</em><p>An array containing the projet leads within ETIC INSA Technologies</p><p><strong>Items</strong>: MemberShort</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></div></li><li><strong>consultants</strong>: <em>required (array of CoreTypes.MemberShort - minItems: 1)</em><p>An array containing all members working as consultants for the project</p><p><strong>Items</strong>: MemberShort</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></div></li><li><strong>qualityManagers</strong>: <em>required (array of CoreTypes.MemberShort - minItems: 1 - maxItems: 3)</em><p>An array containing one or two members of ETIC who ensure quality control</p><p><strong>Items</strong>: MemberShort</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "name": "Création d&#39;un site internet",
+  "description": "Le site web est un magasin en ligne",
+  "field": {
+    "id": 7,
+    "label": "Web"
+  },
+  "status": {
+    "id": 1,
+    "label": "En cours"
+  },
+  "provenance": {
+    "id": 1,
+    "label": "Phoning"
+  },
+  "confidential": true,
+  "signDate": "2018-11-20",
+  "endDate": "2019-12-01",
+  "managementFee": 112,
+  "realizationFee": 174,
+  "rebilledFee": 25,
+  "ecoparticipationFee": 100,
+  "outsourcingFee": 45,
+  "archivedDate": "2020-01-02",
+  "firm": {
+    "id": 1,
+    "siret": "544683216546",
+    "name": "Cool Company Inc.",
+    "address": {
+      "id": 1,
+      "line1": "13 rue du renard",
+      "line2": "appt 421",
+      "city": "Villeurbanne",
+      "postalCode": "69100",
+      "country": {
+        "id": 5,
+        "label": "France"
+      }
+    },
+    "type": {
+      "id": 1,
+      "label": "PME/PMI"
+    }
+  },
+  "contacts": [
+    {
+      "id": 1,
+      "firstName": "Thomas",
+      "lastName": "Edison",
+      "gender": {
+        "id": 2,
+        "label": "F"
+      },
+      "email": "thomas.edison@nomail.com",
+      "telephone": "0033575489521",
+      "cellphone": "0033675445501",
+      "position": "Directeur de commerce"
+    }
+  ],
+  "leaders": [
+    {
+      "id": 1,
+      "username": "clion",
+      "firstName": "charlène",
+      "lastName": "lion",
+      "gender": {
+        "id": 2,
+        "label": "F"
+      }
+    }
+  ],
+  "consultants": [
+    {
+      "id": 1,
+      "username": "clion",
+      "firstName": "charlène",
+      "lastName": "lion",
+      "gender": {
+        "id": 2,
+        "label": "F"
+      }
+    }
+  ],
+  "qualityManagers": [
+    {
+      "id": 1,
+      "username": "clion",
+      "firstName": "charlène",
+      "lastName": "lion",
+      "gender": {
+        "id": 2,
+        "label": "F"
+      }
+    }
+  ]
+}</code></pre></div></li><li><strong>type</strong>: <em>required (one of proforma, acompte, intermediaire, solde)</em><p>Type d&#39;une facture choisie par l&#39;utilisateur. Nom des types: Pro-forma, Acompte, Intermédiaire, Solde.</p></li><li><strong>amountDescription</strong>: <em>required (string - minLength: 1 - maxLength: 2048)</em><p>L&#39;objet de la facture saisie par les utilisateurs (copié d&#39;un document existant généralement)</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>D’un montant de quatre mille quatre-vingt euros toutes taxes comprises (4080€ TTC), correspondant à la réalisation de 13 JEH</code></pre></div></li><li><strong>subject</strong>: <em>required (string)</em><p>Ce qui est facturé. Par défaut le nom du study</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>réalisation d’une plateforme d’optimisation logistique</code></pre></div></li><li><strong>agreementSignDate</strong>: <em>required (date-only)</em><p>date à laquelle la convention a été signée. Par défaut Study.signDate</p></li><li><strong>amountHT</strong>: <em>required (number)</em><p>Montant hors taxe facturé</p></li><li><strong>taxPercentage</strong>: <em>required (number - default: 20)</em><p>Le pourcentage de TVA à appliquer (nombre flottant)</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>20.5</code></pre></div></li><li><strong>amountTTC</strong>: <em>required (number)</em><p>Calculated from the amountHT and taxPercentage on the fly. This should not be stored</p></li><li><strong>dueDate</strong>: <em>required (date-only)</em><p>Date d&#39;écheance de la facture</p></li><li><strong>additionalInformation</strong>: <em>required (string)</em><p>Infos additionnelles saisies par n&#39;importe qui qui a le droit d&#39;éditer</p></li><li><strong>createdDate</strong>: <em>required (datetime)</em><p>La date de création</p></li><li><strong>createdBy</strong>: <em>required (object)</em><p>La personne qui a créée la demande, en général le chef d&#39;affaires</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></li><li><strong>validatedByUa</strong>: <em>required (boolean)</em><p>Si la demande est validé par les UA</p></li><li><strong>validatedByUaDate</strong>: <em>required (datetime)</em><p>La date à laquelle la demande a été validée par les UA</p></li><li><strong>validatedByUaMember</strong>: <em>required (object)</em><p>La personne de UA qui a validé la demande</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></li><li><strong>validatedByPerf</strong>: <em>required (boolean)</em><p>Si la demande est validé par la perf</p></li><li><strong>validatedByPerfDate</strong>: <em>required (datetime)</em><p>La date à laquelle la demande a été validée par la perf</p></li><li><strong>validatedByPerfMember</strong>: <em>required (object)</em><p>La personne de perf qui a validé la demande</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></li></ul><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Returned when the request isn&#39;t valid, or in the case of a get by id, the item is not found</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Returned when user is not authenticated or didn&#39;t send token</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Returned when user is not allowed to access this resource</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Returned for any other error that is not handled</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div></div><div class="tab-pane" id="treso_facture__id__get_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="treso_facture__id__put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/treso</span>/facture/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Updates an TresoTypes.Facture and returns it</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>OAuth2-0</b><p>Simplified OAuth2.0 authentication in which every request must containt a JWT token header</p></div><ul class="nav nav-tabs"><li class="active"><a href="#treso_facture__id__put_request" data-toggle="tab">Request</a></li><li><a href="#treso_facture__id__put_response" data-toggle="tab">Response</a></li><li><a href="#treso_facture__id__put_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="treso_facture__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>numero</strong>: <em>(string - minLength: 5 - maxLength: 32)</em><p>Un string saisie par les utilisateurs sans valeur technique</p></li><li><strong>fullAddress</strong>: <em>(object)</em><p>L&#39;addresse qui apparait sur la facture. Par défaut l&#39;addresse de l&#39;entreprise</p><ul><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>countryId</strong>: <em>required (number)</em></li></ul></li><li><strong>clientName</strong>: <em>(string)</em><p>Le nom du clientName. Par défaut le nom de l&#39;entreprise</p></li><li><strong>contactName</strong>: <em>(string)</em><p>Nom de la personne à qui est addressée la facture. Par défaut le nom du contact principal du firm.</p></li><li><strong>contactEmail</strong>: <em>(string)</em><p>Nom de la personne à qui est addressée la facture. Par défaut l&#39;email du contact principal du firm.</p></li><li><strong>studyId</strong>: <em>required (number)</em><p>L&#39;étude concernée par la facture (contenant les informations comme l&#39;entreprise, le sujet de la facture, ...)</p></li><li><strong>type</strong>: <em>required (one of proforma, acompte, intermediaire, solde)</em><p>Type d&#39;une facture choisie par l&#39;utilisateur. Nom des types: Pro-forma, Acompte, Intermédiaire, Solde.</p></li><li><strong>amountDescription</strong>: <em>(string - minLength: 1 - maxLength: 2048)</em><p>L&#39;objet de la facture saisie par les utilisateurs (copié d&#39;un document existant généralement)</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>D’un montant de quatre mille quatre-vingt euros toutes taxes comprises (4080€ TTC), correspondant à la réalisation de 13 JEH</code></pre></div></li><li><strong>subject</strong>: <em>(string)</em><p>Ce qui est facturé. Par défaut le nom du study</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>réalisation d’une plateforme d’optimisation logistique</code></pre></div></li><li><strong>agreementSignDate</strong>: <em>(date-only)</em><p>date à laquelle la convention a été signée. Par défaut Study.signDate</p></li><li><strong>amountHT</strong>: <em>(number)</em><p>Montant hors taxe facturé</p></li><li><strong>taxPercentage</strong>: <em>(number - default: 20)</em><p>Le pourcentage de TVA à appliquer (nombre flottant)</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>20.5</code></pre></div></li><li><strong>dueDate</strong>: <em>(date-only)</em><p>Date d&#39;écheance de la facture</p></li><li><strong>additionalInformation</strong>: <em>(string)</em><p>Infos additionnelles saisies par n&#39;importe qui qui a le droit d&#39;éditer</p></li><li><strong>createdDate</strong>: <em>required (datetime)</em><p>La date de création</p></li><li><strong>createdById</strong>: <em>required (number)</em><p>La personne qui a créée la demande, en général le chef d&#39;affaires</p></li><li><strong>validatedByUa</strong>: <em>(boolean - default: false)</em><p>Si la demande est validé par les UA</p></li><li><strong>validatedByUaDate</strong>: <em>(datetime)</em><p>La date à laquelle la demande a été validée par les UA</p></li><li><strong>validatedByUaMemberId</strong>: <em>(number)</em><p>La personne de UA qui a validé la demande</p></li><li><strong>validatedByPerf</strong>: <em>(boolean - default: false)</em><p>Si la demande est validé par la perf</p></li><li><strong>validatedByPerfDate</strong>: <em>(datetime)</em><p>La date à laquelle la demande a été validée par la perf</p></li><li><strong>validatedByPerfMemberId</strong>: <em>(number)</em><p>La personne de perf qui a validé la demande</p></li></ul></div><div class="tab-pane" id="treso_facture__id__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The TresoTypes.Facture was successfully updated added</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>required (number)</em><p>ID technique généré pour la facture</p></li><li><strong>numero</strong>: <em>required (string - minLength: 5 - maxLength: 32)</em><p>Un string saisie par les utilisateurs sans valeur technique</p></li><li><strong>fullAddress</strong>: <em>required (object)</em><p>L&#39;addresse qui apparait sur la facture. Par défaut l&#39;addresse de l&#39;entreprise</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 5,
+  "label": "France"
+}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "line1": "13 rue du renard",
+  "line2": "appt 421",
+  "city": "Villeurbanne",
+  "postalCode": "69100",
+  "country": {
+    "id": 5,
+    "label": "France"
+  }
+}</code></pre></div></li><li><strong>clientName</strong>: <em>required (string)</em><p>Le nom du clientName. Par défaut le nom de l&#39;entreprise</p></li><li><strong>contactName</strong>: <em>required (string)</em><p>Nom de la personne à qui est addressée la facture. Par défaut le nom du contact principal du firm.</p></li><li><strong>contactEmail</strong>: <em>required (string)</em><p>Nom de la personne à qui est addressée la facture. Par défaut l&#39;email du contact principal du firm.</p></li><li><strong>study</strong>: <em>required (object)</em><p>L&#39;étude concernée par la facture (contenant les informations comme l&#39;entreprise, le sujet de la facture, ...)</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>name</strong>: <em>required (string)</em></li><li><strong>description</strong>: <em>required (string)</em></li><li><strong>field</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "Web"
+}</code></pre></div></li><li><strong>status</strong>: <em>required (object)</em><p>A status of a specific study</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "label": "En cours"
+}</code></pre></div></li><li><strong>provenance</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 4,
+  "label": "Phoning"
+}</code></pre></div></li><li><strong>confidential</strong>: <em>required (boolean)</em></li><li><strong>signDate</strong>: <em>required (date-only)</em></li><li><strong>endDate</strong>: <em>(date-only)</em></li><li><strong>managementFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>realizationFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>rebilledFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>ecoparticipationFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>outsourcingFee</strong>: <em>(number)</em><p>Represents a specific amount of money in euros (€)</p></li><li><strong>archivedDate</strong>: <em>(date-only)</em><p>If the project is archived, this date speciifies when that happened. If not, will be either null or not present.</p></li><li><strong>firm</strong>: <em>required (object)</em><p>A firm / company that ETIC is associated with (clients, partners, etc)</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>siret</strong>: <em>(string - maxLength: 20)</em><p>A company&#39;s SIRET</p></li><li><strong>name</strong>: <em>required (string)</em><p>The company&#39;s name, or the persons name if it is a physical person</p></li><li><strong>address</strong>: <em>required (object)</em><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>line1</strong>: <em>required (string)</em></li><li><strong>line2</strong>: <em>(string)</em></li><li><strong>city</strong>: <em>required (string)</em></li><li><strong>postalCode</strong>: <em>required (string)</em></li><li><strong>country</strong>: <em>required (object)</em><p>A country</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 5,
+  "label": "France"
+}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "line1": "13 rue du renard",
+  "line2": "appt 421",
+  "city": "Villeurbanne",
+  "postalCode": "69100",
+  "country": {
+    "id": 5,
+    "label": "France"
+  }
+}</code></pre></div></li><li><strong>type</strong>: <em>required (object)</em><p>A type of firm</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "label": "PME/PMI"
+}</code></pre></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "siret": "544683216546",
+  "name": "Cool Company Inc.",
+  "address": {
+    "id": 1,
+    "line1": "13 rue du renard",
+    "line2": "appt 421",
+    "city": "Villeurbanne",
+    "postalCode": "69100",
+    "country": {
+      "id": 5,
+      "label": "France"
+    }
+  },
+  "type": {
+    "id": 1,
+    "label": "PME/PMI"
+  }
+}</code></pre></div></li><li><strong>contacts</strong>: <em>required (array of UATypes.ContactShort - minItems: 1)</em><p>An array containing all contacts associated with this project</p><p><strong>Items</strong>: ContactShort</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li><li><strong>email</strong>: <em>required (string)</em></li><li><strong>telephone</strong>: <em>(string)</em><p>A contacts home or work phone number</p></li><li><strong>cellphone</strong>: <em>(string)</em><p>A contacts cellphone number</p></li><li><strong>position</strong>: <em>(string)</em><p>The contacts position / job within his firm</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "firstName": "Thomas",
+  "lastName": "Edison",
+  "gender": {
+    "id": 2,
+    "label": "F"
+  },
+  "email": "thomas.edison@nomail.com",
+  "telephone": "0033575489521",
+  "cellphone": "0033675445501",
+  "position": "Directeur de commerce"
+}</code></pre></div></div></li><li><strong>leaders</strong>: <em>required (array of CoreTypes.MemberShort - minItems: 1 - maxItems: 3)</em><p>An array containing the projet leads within ETIC INSA Technologies</p><p><strong>Items</strong>: MemberShort</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></div></li><li><strong>consultants</strong>: <em>required (array of CoreTypes.MemberShort - minItems: 1)</em><p>An array containing all members working as consultants for the project</p><p><strong>Items</strong>: MemberShort</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></div></li><li><strong>qualityManagers</strong>: <em>required (array of CoreTypes.MemberShort - minItems: 1 - maxItems: 3)</em><p>An array containing one or two members of ETIC who ensure quality control</p><p><strong>Items</strong>: MemberShort</p><div class="items"><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "name": "Création d&#39;un site internet",
+  "description": "Le site web est un magasin en ligne",
+  "field": {
+    "id": 7,
+    "label": "Web"
+  },
+  "status": {
+    "id": 1,
+    "label": "En cours"
+  },
+  "provenance": {
+    "id": 1,
+    "label": "Phoning"
+  },
+  "confidential": true,
+  "signDate": "2018-11-20",
+  "endDate": "2019-12-01",
+  "managementFee": 112,
+  "realizationFee": 174,
+  "rebilledFee": 25,
+  "ecoparticipationFee": 100,
+  "outsourcingFee": 45,
+  "archivedDate": "2020-01-02",
+  "firm": {
+    "id": 1,
+    "siret": "544683216546",
+    "name": "Cool Company Inc.",
+    "address": {
+      "id": 1,
+      "line1": "13 rue du renard",
+      "line2": "appt 421",
+      "city": "Villeurbanne",
+      "postalCode": "69100",
+      "country": {
+        "id": 5,
+        "label": "France"
+      }
+    },
+    "type": {
+      "id": 1,
+      "label": "PME/PMI"
+    }
+  },
+  "contacts": [
+    {
+      "id": 1,
+      "firstName": "Thomas",
+      "lastName": "Edison",
+      "gender": {
+        "id": 2,
+        "label": "F"
+      },
+      "email": "thomas.edison@nomail.com",
+      "telephone": "0033575489521",
+      "cellphone": "0033675445501",
+      "position": "Directeur de commerce"
+    }
+  ],
+  "leaders": [
+    {
+      "id": 1,
+      "username": "clion",
+      "firstName": "charlène",
+      "lastName": "lion",
+      "gender": {
+        "id": 2,
+        "label": "F"
+      }
+    }
+  ],
+  "consultants": [
+    {
+      "id": 1,
+      "username": "clion",
+      "firstName": "charlène",
+      "lastName": "lion",
+      "gender": {
+        "id": 2,
+        "label": "F"
+      }
+    }
+  ],
+  "qualityManagers": [
+    {
+      "id": 1,
+      "username": "clion",
+      "firstName": "charlène",
+      "lastName": "lion",
+      "gender": {
+        "id": 2,
+        "label": "F"
+      }
+    }
+  ]
+}</code></pre></div></li><li><strong>type</strong>: <em>required (one of proforma, acompte, intermediaire, solde)</em><p>Type d&#39;une facture choisie par l&#39;utilisateur. Nom des types: Pro-forma, Acompte, Intermédiaire, Solde.</p></li><li><strong>amountDescription</strong>: <em>required (string - minLength: 1 - maxLength: 2048)</em><p>L&#39;objet de la facture saisie par les utilisateurs (copié d&#39;un document existant généralement)</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>D’un montant de quatre mille quatre-vingt euros toutes taxes comprises (4080€ TTC), correspondant à la réalisation de 13 JEH</code></pre></div></li><li><strong>subject</strong>: <em>required (string)</em><p>Ce qui est facturé. Par défaut le nom du study</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>réalisation d’une plateforme d’optimisation logistique</code></pre></div></li><li><strong>agreementSignDate</strong>: <em>required (date-only)</em><p>date à laquelle la convention a été signée. Par défaut Study.signDate</p></li><li><strong>amountHT</strong>: <em>required (number)</em><p>Montant hors taxe facturé</p></li><li><strong>taxPercentage</strong>: <em>required (number - default: 20)</em><p>Le pourcentage de TVA à appliquer (nombre flottant)</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>20.5</code></pre></div></li><li><strong>amountTTC</strong>: <em>required (number)</em><p>Calculated from the amountHT and taxPercentage on the fly. This should not be stored</p></li><li><strong>dueDate</strong>: <em>required (date-only)</em><p>Date d&#39;écheance de la facture</p></li><li><strong>additionalInformation</strong>: <em>required (string)</em><p>Infos additionnelles saisies par n&#39;importe qui qui a le droit d&#39;éditer</p></li><li><strong>createdDate</strong>: <em>required (datetime)</em><p>La date de création</p></li><li><strong>createdBy</strong>: <em>required (object)</em><p>La personne qui a créée la demande, en général le chef d&#39;affaires</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></li><li><strong>validatedByUa</strong>: <em>required (boolean)</em><p>Si la demande est validé par les UA</p></li><li><strong>validatedByUaDate</strong>: <em>required (datetime)</em><p>La date à laquelle la demande a été validée par les UA</p></li><li><strong>validatedByUaMember</strong>: <em>required (object)</em><p>La personne de UA qui a validé la demande</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></li><li><strong>validatedByPerf</strong>: <em>required (boolean)</em><p>Si la demande est validé par la perf</p></li><li><strong>validatedByPerfDate</strong>: <em>required (datetime)</em><p>La date à laquelle la demande a été validée par la perf</p></li><li><strong>validatedByPerfMember</strong>: <em>required (object)</em><p>La personne de perf qui a validé la demande</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>username</strong>: <em>required (string)</em></li><li><strong>firstName</strong>: <em>required (string)</em></li><li><strong>lastName</strong>: <em>required (string)</em></li><li><strong>gender</strong>: <em>required (object)</em><p>Gender of the user, with A being "Autre" and I being "Inconnu".</p><ul><li><strong>id</strong>: <em>required (number)</em></li><li><strong>label</strong>: <em>required (one of H, F, A, I - minLength: 1 - maxLength: 1)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "label": "H"
+}</code></pre></div></li></ul></li></ul><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Returned when the request isn&#39;t valid, or in the case of a get by id, the item is not found</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Returned when user is not authenticated or didn&#39;t send token</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Returned when user is not allowed to access this resource</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Returned for any other error that is not handled</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div></div><div class="tab-pane" id="treso_facture__id__put_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="treso_facture__id__delete"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/treso</span>/facture/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Deletes an TresoTypes.Facture by ID</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>OAuth2-0</b><p>Simplified OAuth2.0 authentication in which every request must containt a JWT token header</p></div><ul class="nav nav-tabs"><li class="active"><a href="#treso_facture__id__delete_request" data-toggle="tab">Request</a></li><li><a href="#treso_facture__id__delete_response" data-toggle="tab">Response</a></li><li><a href="#treso_facture__id__delete_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="treso_facture__id__delete_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="treso_facture__id__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>The TresoTypes.Facture was correctly deleted</p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Returned when the request isn&#39;t valid, or in the case of a get by id, the item is not found</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Returned when user is not authenticated or didn&#39;t send token</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Returned when user is not allowed to access this resource</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Returned for any other error that is not handled</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>status</strong>: <em>required (number)</em></li><li><strong>message</strong>: <em>required (string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "status": 500,
+  "message": "Internal Service Error"
+}</code></pre></div></div><div class="tab-pane" id="treso_facture__id__delete_securedby"><h1>Secured by OAuth2-0</h1><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string - pattern: Bearer {token})</em><p>The security token that was received at login</p></li></ul></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#auth">/auth</a></li><li><a href="#core">/core</a></li><li><a href="#ua">/ua</a></li><li><a href="#treso">/treso</a></li></ul></div></div></div></div></body></html>

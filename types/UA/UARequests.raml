@@ -2,6 +2,7 @@
 uses:
   UATypes: ./UATypes.raml
   CoreTypes: ../Core/CoreTypes.raml
+  CoreRequests: ../Core/CoreRequests.raml
 types:
   CreateFirm:
     type: object
@@ -12,7 +13,7 @@ types:
         required: false
       name:
         type: string
-      address: CoreTypes.Address
+      address: CoreRequests.AddressRequest
       typeId:
         type: number
         description: The ID of the firm's type
@@ -26,7 +27,7 @@ types:
         required: false
       name:
         type: string
-      address: CoreTypes.Address
+      address: CoreRequests.AddressRequest
       typeId:
         type: number
         description: The ID of the firm's type

@@ -2,6 +2,17 @@
 uses:
   CoreTypes: ./CoreTypes.raml
 types:
+  AddressRequest:
+    type: object
+    properties:
+      line1: string
+      line2:
+        type: string
+        required: false
+      city: string
+      postalCode: string
+      countryId: number
+
   PositionRequest:
     type: object
     description: A tuple of position ID and linked information
@@ -32,7 +43,7 @@ types:
       telephone:
         type: string
         required: false
-      address: CoreTypes.Address
+      address: AddressRequest
       positions:
         type: array
         items: PositionRequest
@@ -63,7 +74,7 @@ types:
       telephone:
         type: string
         required: false
-      address: CoreTypes.Address
+      address: AddressRequest
       positions:
         type: array
         items: PositionRequest

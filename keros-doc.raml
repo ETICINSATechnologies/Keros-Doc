@@ -12,6 +12,8 @@ uses:
   CoreRequests: ./types/Core/CoreRequests.raml
   UATypes: ./types/UA/UATypes.raml
   UARequests: ./types/UA/UARequests.raml
+  TresoTypes: ./types/Treso/TresoTypes.raml
+  TresoRequests: ./types/Treso/TresoRequests.raml
 version: v1
 baseUri: /api/v1
 mediaType:
@@ -207,3 +209,11 @@ description: This API represents the interface between Keros-Back and Keros-Fron
                   "location": "http://keros-api-dev.etic-insa.com/api/v1/core/document/a946092b-7387-4f42-bcd0-d4e43ccab89e"
                 }
 
+/treso:
+  description: Tréso endpoints
+  /facture-types:
+    type:  { GeneralResourceTypes.GetAll: {item : TresoTypes.FactureType } }
+  /facture:
+    type:  { GeneralResourceTypes.GetPage+Create: {item : TresoTypes.Facture, itemRequest : TresoRequests.CreateFacture } }
+  /facture/{id}:
+    type: { GeneralResourceTypes.Get+Update+Delete: {item : TresoTypes.Facture, itemUpdateRequest : TresoRequests.CreateFacture  } }

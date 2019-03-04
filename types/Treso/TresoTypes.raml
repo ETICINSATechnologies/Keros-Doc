@@ -1,0 +1,93 @@
+#%RAML 1.0 Library
+uses:
+  CoreTypes: ../Core/CoreTypes.raml
+  UATypes: ../UA/UATypes.raml
+types:
+  FactureType:
+    type: string
+    enum: [proforma, acompte, intermediaire, solde]
+    description: "Type d'une facture choisie par l'utilisateur. Nom des types: Pro-forma, Acompte, Intermédiaire, Solde."
+
+  Facture:
+    type: object
+    description: Une facture envoyée aux entreprises. Les champs sont initialisés avec les valeurs trouvées dans Firm/Study/etc mais sont modifiables - il faut donc stocker les valeurs en double.
+    properties:
+      id:
+        type: number
+        description: ID technique généré pour la facture
+      numero:
+        type: string
+        description: Un string saisie par les utilisateurs sans valeur technique
+        minLength: 5
+        maxLength: 32
+      fullAddress:
+        type: CoreTypes.Address
+        description: L'addresse qui apparait sur la facture. Par défaut l'addresse de l'entreprise
+      clientName: 
+        type: string
+        description: Le nom du clientName. Par défaut le nom de l'entreprise
+      contactName:
+        type: string
+        description: Nom de la personne à qui est addressée la facture. Par défaut le nom du contact principal du firm.
+      contactEmail:
+        type: string
+        description: Nom de la personne à qui est addressée la facture. Par défaut l'email du contact principal du firm.
+      study:
+        type: UATypes.Study
+        description: "L'étude concernée par la facture (contenant les informations comme l'entreprise, le sujet de la facture, ...)"
+      type:
+        type: FactureType
+      amountDescription:
+        type: string
+        example: D’un montant de quatre mille quatre-vingt euros toutes taxes comprises (4080€ TTC), correspondant à la réalisation de 13 JEH
+        description: L'objet de la facture saisie par les utilisateurs (copié d'un document existant généralement)
+        minLength: 1
+        maxLength: 2048
+      subject:
+        type: string
+        example: "réalisation d’une plateforme d’optimisation logistique"
+        description: Ce qui est facturé. Par défaut le nom du study
+      agreementSignDate:
+        type: date-only
+        description: date à laquelle la convention a été signée. Par défaut Study.signDate
+      amountHT:
+        type: CoreTypes.Money
+        description: Montant hors taxe facturé
+      taxPercentage:
+        type: number
+        description: Le pourcentage de TVA à appliquer (nombre flottant)
+        example: 20.5
+        default: 20.0
+      amountTTC:
+        type: CoreTypes.Money
+        description: Calculated from the amountHT and taxPercentage on the fly. This should not be stored
+      dueDate:
+        type: date-only
+        description: Date d'écheance de la facture
+      additionalInformation:
+        type: string
+        description: Infos additionnelles saisies par n'importe qui qui a le droit d'éditer
+      createdDate:
+        type: datetime
+        description: La date de création
+      createdBy:
+        type: CoreTypes.MemberShort
+        description: La personne qui a créée la demande, en général le chef d'affaires
+      validatedByUa:
+        type: boolean
+        description: Si la demande est validé par les UA
+      validatedByUaDate:
+        type: datetime
+        description: La date à laquelle la demande a été validée par les UA
+      validatedByUaMember:
+        type: CoreTypes.MemberShort
+        description: La personne de UA qui a validé la demande
+      validatedByPerf:
+        type: boolean
+        description: Si la demande est validé par la perf
+      validatedByPerfDate:
+        type: datetime
+        description: La date à laquelle la demande a été validée par la perf
+      validatedByPerfMember:
+        type: CoreTypes.MemberShort
+        description: La personne de perf qui a validé la demande

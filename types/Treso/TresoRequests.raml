@@ -1,0 +1,108 @@
+#%RAML 1.0 Library
+uses:
+  CoreTypes: ../Core/CoreTypes.raml
+  CoreRequests: ../Core/CoreRequests.raml
+  UATypes: ../UA/UATypes.raml
+  TresoTypes: ./TresoTypes.raml
+types:
+  CreateFacture:
+    type: object
+    description: Une demande de création de facture
+    properties:
+      numero:
+        type: string
+        description: Un string saisie par les utilisateurs sans valeur technique
+        minLength: 5
+        maxLength: 32
+        required: false
+      fullAddress:
+        type: CoreRequests.AddressRequest
+        description: L'addresse qui apparait sur la facture. Par défaut l'addresse de l'entreprise
+        required: false
+      clientName: 
+        type: string
+        description: Le nom du clientName. Par défaut le nom de l'entreprise
+        required: false
+      contactName:
+        type: string
+        description: Nom de la personne à qui est addressée la facture. Par défaut le nom du contact principal du firm.
+        required: false
+      contactEmail:
+        type: string
+        description: Nom de la personne à qui est addressée la facture. Par défaut l'email du contact principal du firm.
+        required: false
+      studyId:
+        type: number
+        description: "L'étude concernée par la facture (contenant les informations comme l'entreprise, le sujet de la facture, ...)"
+        required: true
+      type:
+        type: TresoTypes.FactureType
+        required: true
+      amountDescription:
+        type: string
+        example: D’un montant de quatre mille quatre-vingt euros toutes taxes comprises (4080€ TTC), correspondant à la réalisation de 13 JEH
+        description: L'objet de la facture saisie par les utilisateurs (copié d'un document existant généralement)
+        minLength: 1
+        maxLength: 2048
+        required: false
+      subject:
+        type: string
+        example: "réalisation d’une plateforme d’optimisation logistique"
+        description: Ce qui est facturé. Par défaut le nom du study
+        required: false
+      agreementSignDate:
+        type: date-only
+        description: date à laquelle la convention a été signée. Par défaut Study.signDate
+        required: false
+      amountHT:
+        type: CoreTypes.Money
+        description: Montant hors taxe facturé
+        required: false
+      taxPercentage:
+        type: number
+        description: Le pourcentage de TVA à appliquer (nombre flottant)
+        example: 20.5
+        default: 20.0
+        required: false
+      dueDate:
+        type: date-only
+        description: Date d'écheance de la facture
+        required: false
+      additionalInformation:
+        type: string
+        description: Infos additionnelles saisies par n'importe qui qui a le droit d'éditer
+        required: false
+      createdDate:
+        type: datetime
+        description: La date de création
+        required: true
+      createdById:
+        type: number
+        description: La personne qui a créée la demande, en général le chef d'affaires
+        required: true
+      validatedByUa:
+        type: boolean
+        description: Si la demande est validé par les UA
+        required: false
+        default: false
+      validatedByUaDate:
+        type: datetime
+        description: La date à laquelle la demande a été validée par les UA
+        required: false
+      validatedByUaMemberId:
+        type: number
+        description: La personne de UA qui a validé la demande
+        required: false
+      validatedByPerf:
+        type: boolean
+        description: Si la demande est validé par la perf
+        required: false
+        default: false
+      validatedByPerfDate:
+        type: datetime
+        description: La date à laquelle la demande a été validée par la perf
+        required: false
+      validatedByPerfMemberId:
+        type: number
+        description: La personne de perf qui a validé la demande
+        required: false
